@@ -1,0 +1,94 @@
+@import '../../appThemeVariables.scss';
+
+.day-page {
+    padding-top: 80px;
+}
+
+.left-col {
+    margin: 20px 10px 20px 0;
+}
+
+.right-col {
+    margin: 20px 0 20px 10px;
+}
+
+.container {
+    margin-top: 10px;
+}
+
+.card {
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.details-card-header {
+    background-color: $primary-dark;
+    color: white;
+    border-radius: 5px;
+}
+
+.title {
+    color: black;
+}
+
+.mat-button {
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+.label {
+    font-size: 100%;
+    font-weight: bold;
+    color: darkgreen;
+}
+
+.data {
+    font-size: 100%;
+}
+
+.rating {
+    color: darkorange;
+    font-size: 120%;
+    margin-bottom: 5px;
+    padding-top: 5px;
+    flex: 0 1 auto;
+}
+
+table {
+    width: 100%;
+  }
+
+  .tables {
+      margin: 15px 0 0 0;
+  }
+
+  .inStock {
+      height: auto;
+      width: 25px;
+  }
+
+  .new-button {
+      margin: 5px;
+      background-color: $primary;
+      color: $primary-contrast;
+  }
+
+  .table-button {
+    //background-color: $primary;
+    color: $primary;
+  }
+
+  .button-cell {
+      text-align: right;
+  }
+
+  .mat-cell:last-of-type {
+      padding-right: 5px;
+  }

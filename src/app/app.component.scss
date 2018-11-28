@@ -1,0 +1,30 @@
+@import '../appThemeVariables.scss';
+
+.fill-remaining-space {
+    flex: 1 1 auto;
+  }
+
+  .footer
+{
+    //height: 33px;
+    font-size: 75%;
+    color: $primary-contrast;
+    text-align: center;
+    margin-top: 10px;
+    width: 100%
+}
+
+.toolbar {
+    color: $primary-contrast;
+    background-color: $primary;
+}
+
+.selected {
+    color: $primary-contrast;
+    background-color: $primary;
+}
+
+.not-selected {
+    color: $primary-contrast;
+    background-color: $primary;
+}

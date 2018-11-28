@@ -1,0 +1,9 @@
+@import '~@angular/material/theming';
+@import './appThemeVariables.scss';
+@include mat-core();
+@include angular-material-theme($app-theme);
+
+.mat-header-cell {
+    color: $primary-dark;
+    font-weight: bold;
+  }
