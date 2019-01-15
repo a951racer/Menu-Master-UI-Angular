@@ -4,11 +4,9 @@ import { RouterModule, Router } from '@angular/router';
 import { MaterialModule } from '../helpers/material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { MealComponent } from './meal.component';
-import { MealRoutes } from './meal.routes';
+import { RecipeComponent } from './recipe.component';
+import { RecipeRoutes } from './recipe.routes';
 import { HelpersModule } from '../helpers/helpers.module';
-import { MealDialogComponent } from './meal-dialog/meal-dialog.component';
-import { ConfirmationDialogComponent } from '../helpers/confirmation-dialog/confirmation-dialog.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -19,19 +17,14 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     HelpersModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forChild(MealRoutes),
+    RouterModule.forChild(RecipeRoutes),
   ],
   declarations: [
-    MealComponent,
-    MealDialogComponent,
-    ConfirmationDialogComponent
+    RecipeComponent,
   ],
   entryComponents: [
-    MealDialogComponent,
-    ConfirmationDialogComponent
   ],
   exports: [
-    MealDialogComponent,
   ]
 })
-export class MealModule { }
+export class RecipeModule { }

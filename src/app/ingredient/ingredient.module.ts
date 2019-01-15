@@ -4,11 +4,10 @@ import { RouterModule, Router } from '@angular/router';
 import { MaterialModule } from '../helpers/material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { MealComponent } from './meal.component';
-import { MealRoutes } from './meal.routes';
+import { IngredientComponent } from './ingredient.component';
+import { IngredientRoutes } from './ingredient.routes';
+import { IngredientDialogComponent } from './ingredient-dialog/ingredient-dialog.component';
 import { HelpersModule } from '../helpers/helpers.module';
-import { MealDialogComponent } from './meal-dialog/meal-dialog.component';
-import { ConfirmationDialogComponent } from '../helpers/confirmation-dialog/confirmation-dialog.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -19,19 +18,16 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     HelpersModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forChild(MealRoutes),
+    RouterModule.forChild(IngredientRoutes),
   ],
   declarations: [
-    MealComponent,
-    MealDialogComponent,
-    ConfirmationDialogComponent
+    IngredientComponent,
+    IngredientDialogComponent
   ],
   entryComponents: [
-    MealDialogComponent,
-    ConfirmationDialogComponent
+    IngredientDialogComponent
   ],
   exports: [
-    MealDialogComponent,
   ]
 })
-export class MealModule { }
+export class IngredientModule { }

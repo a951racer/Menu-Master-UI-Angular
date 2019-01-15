@@ -1,50 +1,50 @@
 <h1 mat-dialog-title>{{data.dialogTitle}}</h1>
 <mat-dialog-content [formGroup]="dayForm">
   <mat-form-field>
-    <input matInput 
-      [matDatepicker]="myDatepicker" 
-      placeholder="Date" 
-      formControlName="date">
+    <input matInput
+      [matDatepicker]="myDatepicker"
+      placeholder="Date"
+      formControlName="data.date">
     <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
     <mat-datepicker #myDatepicker></mat-datepicker>
   </mat-form-field>
   <mat-form-field>
-    <input matInput 
-      placeholder="Comment"
-      formControlName="comment">
+    <input matInput
+    placeholder="Comment"
+    formControlName="data.comment">
   </mat-form-field>
-</mat-dialog-content>
 
 
-<div *ngIf="isDataAvailable">
-  <div class="example-container">
-    <h2>Meals for {{ data.date | date: 'EEEE' }}</h2>
+  <div *ngIf="isDataAvailable">
+    <div fxLayout="row" fxLayoutAlign="space-between center " class="dayDialog">
+        <div fxFlex="0 1 50%" class="left-col meal-container">
+              <h2>Meals for {{ data.date }}</h2>
+              <div
+                cdkDropList
+                #dayMealList="cdkDropList"
+                [cdkDropListData]="data.mealList"
+                [cdkDropListConnectedTo]="[mealList]"
+                class="meal-list"
+                (cdkDropListDropped)="drop($event)">
+                  <div class="meal-box" *ngFor="let item of data.mealList" cdkDrag>{{item.name}}</div>
+              </div>
+        </div>
+    </div>
 
-      <div
-        cdkDropList
-        #dayMealList="cdkDropList"
-        [cdkDropListData]="data.mealList"
-        [cdkDropListConnectedTo]="[mealList]"
-        class="meal-list"
-        (cdkDropListDropped)="drop($event)">
-          <div class="example-box" *ngFor="let item of data.mealList" cdkDrag>{{item.name}}</div>
-      </div>
-  </div>
-  <div class="example-container">
-    
-    <h2>Meals</h2>
-    <div
-      cdkDropList
-      #mealList="cdkDropList"
-      [cdkDropListData]="meals"
-      [cdkDropListConnectedTo]="[dayMealList]"
-      class="example-list"
-      (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of meals" cdkDrag>{{item.name}}</div>
+    <div fxFlex="0 1 50%" class="right-col meal-container">
+        <h2>Meals</h2>
+        <div
+          cdkDropList
+          #mealList="cdkDropList"
+          [cdkDropListData]="meals"
+          [cdkDropListConnectedTo]="[dayMealList]"
+          class="meal-list"
+          (cdkDropListDropped)="drop($event)">
+            <div class="meal-box" *ngFor="let item of meals" cdkDrag>{{item.name}}</div>
+        </div>
     </div>
   </div>
-</div>
-
+</mat-dialog-content>
 <div mat-dialog-actions>
     <button mat-button (click)="save()" cdkFocusInitial>Save</button>
     <button mat-button (click)="onCancelClick()">Cancel</button>

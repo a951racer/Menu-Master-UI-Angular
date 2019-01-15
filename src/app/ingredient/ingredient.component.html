@@ -1,0 +1,55 @@
+<h1>Ingredients</h1>
+<button mat-raised-button class="new-button" (click)="newIngredient()">New</button>
+<div fxLayout="row" fxLayoutAlign="space-between start " class="ingredientPage">
+  <!-- List -->
+  <div fxFlex="0 1 50%" class="left-col">
+    <mat-card class="card" [class.mat-elevation-z8]="selectedIngredient._id === ingredient._id" (click)="onCardClick(ingredient._id)" *ngFor="let ingredient of ingredientList">
+      <mat-card-header>
+        <mat-card-title class="title">
+          {{ ingredient.name }}
+        </mat-card-title>
+        <mat-card-subtitle>
+        </mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+    <br>
+  </div>
+
+
+  <!-- Details Area -->
+  <div fxFlex="0 1 50%" class="right-col">
+      <div *ngIf="!showDetails">
+        <mat-card>
+          Click an ingredient to see details
+        </mat-card>
+      </div>
+
+      <div id="details" *ngIf="showDetails">
+        <div>
+          <mat-card class="details-card mat-elevation-z8">
+            <mat-card-header class="details-card-header">
+              <mat-card-title>
+                {{ selectedIngredient.name }}
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <br>
+              <p>
+                {{ selectedIngredient.description }}
+              </p>
+              <a href="{{ selectedIngredient.productLink }}" target="_blank" ><img class="product-image" src="{{selectedIngredient.imageLink}}"  ></a>
+
+            </mat-card-content>
+              <mat-card-actions>
+                <button mat-button (click)="handleButtonClick('close')">CLOSE</button>
+                <button mat-button (click)="handleButtonClick('edit')">EDIT</button>
+                <button mat-button (click)="handleButtonClick('delete')">DELETE</button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        </div>
+
+        <div id="edit" *ngIf="showEdit">
+      </div>
+    </div>
+</div>

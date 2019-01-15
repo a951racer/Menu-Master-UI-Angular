@@ -27,13 +27,13 @@ export class DayDialogComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public data: any) {
                 this.dayForm = fb.group(data);
   }
-  
+
   ngOnInit() {
     this._mealService.list().subscribe(mealList => {
 
       this.meals = mealList;
       if (!this.data.mealList) {
-        this.data.mealList = [{id: -1, name: 'Drag Meals Here'}];
+        this.data.mealList = [];
       }
       this.isDataAvailable = true;
     });

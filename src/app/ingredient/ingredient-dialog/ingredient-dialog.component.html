@@ -1,0 +1,44 @@
+<h1 mat-dialog-title>{{data.dialogTitle}}</h1>
+      <mat-dialog-content [formGroup]="ingredientForm">
+        <div class="form-container">
+        <mat-form-field>
+          <input matInput
+            placeholder="Name"
+            formControlName="name">
+        </mat-form-field>
+        <mat-form-field>
+          <textarea matInput
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="1"
+            cdkAutosizeMaxRows="5"
+            placeholder="Decription"
+            formControlName="description">
+          </textarea>
+        </mat-form-field>
+        <mat-form-field>
+            <textarea matInput
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="1"
+              cdkAutosizeMaxRows="5"
+              placeholder="Product Link"
+              formControlName="productLink">
+            </textarea>
+        </mat-form-field>
+        <mat-form-field>
+            <textarea  matInput
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="1"
+              cdkAutosizeMaxRows="5"
+              placeholder="Image Link"
+              formControlName="imageLink">
+            </textarea>
+          </mat-form-field>
+        </div>
+      </mat-dialog-content>
+<div mat-dialog-actions>
+    <button mat-button (click)="save()" cdkFocusInitial>Save</button>
+    <button mat-button (click)="onCancelClick()">Cancel</button>
+</div>

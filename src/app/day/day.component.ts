@@ -76,7 +76,7 @@ export class DayComponent implements OnInit {
     this.dialogData = newDay;
     this.dialogData.dialogTitle = 'New Day';
     const dialogRef = this.dialog.open(DayDialogComponent, {
-      width: '300px',
+      width: '450px',
       height: 'auto',
       data: this.dialogData
     });

@@ -1,13 +1,14 @@
 @import '~@angular/material/theming';
 @include mat-core();
 
-$app-primary: mat-palette($mat-blue, 700, 500, 900);
+$app-primary: mat-palette($mat-blue, 700, 200, 900);
 $app-accent:  mat-palette($mat-orange, 200, 100, 400);
 $app-warn:    mat-palette($mat-red);
 
 $primary: mat-color($app-primary);
 $primary-contrast: mat-color($app-primary, default-contrast);
 $primary-dark: mat-color($app-primary, darker);
+$primary-light: mat-color($app-primary, lighter);
 $accent: mat-color($app-accent);
 $accent-contrast: mat-color($app-accent, default-contrast);
 $warn: mat-color($app-warn);

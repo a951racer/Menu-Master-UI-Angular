@@ -1,27 +1,24 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MealService } from './meal.service';
+import { MealDialogComponent } from './meal-dialog/meal-dialog.component'
 import { MatTable, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { meal } from './meal.model';
-import { MealDialogComponent } from './meal-dialog/meal-dialog.component';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { ConfirmationDialogComponent } from '../helpers/confirmation-dialog/confirmation-dialog.component';
+
 
 @Component({
   selector: 'app-meal',
   templateUrl: './meal.component.html',
-  styleUrls: ['meal.component.scss'],
-  providers: [
-    MealService,
-  ]
+  styleUrls: ['./meal.component.scss'],
+  providers: [ MealService ]
 })
 
 export class MealComponent implements OnInit {
-
   mealList: any;
   selectedMeal: any;
   showDetails = false;
   showEdit = false;
-  displayedMealColumns = ['name','comment'];
+  displayedMealColumns = ['order','name'];
   dialogData: any;
 
   constructor(private _mealService: MealService,
@@ -31,13 +28,12 @@ export class MealComponent implements OnInit {
   ngOnInit() {
     this._mealService.list().subscribe(mealList  => {
       this.mealList = mealList;
-      this.sort('order');
       this.selectedMeal = {};
     });
   }
 
   onCardClick(id) {
-    if (this.selectedMeal.id === id) {
+    if (this.selectedMeal._id === id) {
       this.selectedMeal = {};
       this.showDetails = false;
     } else {
@@ -47,6 +43,7 @@ export class MealComponent implements OnInit {
       });
     }
   }
+
 
   onDetailsClick() {
     this.selectedMeal = {};
@@ -90,9 +87,9 @@ export class MealComponent implements OnInit {
 
   editMeal(meal) {
     this.dialogData = this.selectedMeal;
-    this.dialogData.dialogTitle = 'Edit meal';
+    this.dialogData.dialogTitle = 'Edit Meal';
     const dialogRef = this.dialog.open(MealDialogComponent, {
-      width: '300px',
+      width: '400px',
       height: 'auto',
       data: this.dialogData
     });
@@ -100,6 +97,7 @@ export class MealComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         result.id = this.selectedMeal.id;
+        console.log(result);
         this._mealService.update(result).subscribe(meal => {
           this.selectedMeal = meal;
           this.showDetails = true;
@@ -126,16 +124,5 @@ export class MealComponent implements OnInit {
         });
       }
     });
-  }
-
-  /*** Utilities ***/
-
-  sort(fieldName) {
-    console.log(this.mealList);
-    switch (fieldName) {
-      case 'order' :
-      this.mealList.sort(function(a, b){ return parseInt(a.order) - parseInt(b.order)});
-    }
-    console.log(this.mealList);
   }
 }

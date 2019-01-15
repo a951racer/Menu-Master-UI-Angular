@@ -1,94 +1,99 @@
 @import '../../appThemeVariables.scss';
 
-.day-page {
+.meal-page {
     padding-top: 80px;
 }
-
 .left-col {
-    margin: 20px 10px 20px 0;
+  margin: 20px 10px 20px 0;
 }
 
 .right-col {
-    margin: 20px 0 20px 10px;
+  margin: 20px 0 20px 10px;
 }
 
 .container {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .card {
-    margin-bottom: 10px;
-    cursor: pointer;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .details-card-header {
-    background-color: $primary-dark;
-    color: white;
-    border-radius: 5px;
+  background-color: lightgray;
+  color: black;
+  border-radius: 5px;
+  padding-top: 10px;
+}
+
+.product-image {
+max-width: 150px;
+max-height: 150px;
 }
 
 .title {
-    color: black;
+  color: black;
 }
 
 .mat-button {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 .visible {
-    display: block;
+  display: block;
 }
 
 .label {
-    font-size: 100%;
-    font-weight: bold;
-    color: darkgreen;
+  font-size: 100%;
+  font-weight: bold;
+  color: darkgreen;
 }
 
 .data {
-    font-size: 100%;
+  font-size: 100%;
 }
 
 .rating {
-    color: darkorange;
-    font-size: 120%;
-    margin-bottom: 5px;
-    padding-top: 5px;
-    flex: 0 1 auto;
+  color: darkorange;
+  font-size: 120%;
+  margin-bottom: 5px;
+  padding-top: 5px;
+  flex: 0 1 auto;
 }
 
 table {
-    width: 100%;
-  }
+  width: 100%;
+}
 
-  .tables {
-      margin: 15px 0 0 0;
-  }
+.tables {
+    margin: 15px 0 0 0;
+}
 
-  .inStock {
-      height: auto;
-      width: 25px;
-  }
+.inStock {
+    height: auto;
+    width: 25px;
+}
 
-  .new-button {
-      margin: 5px;
-      background-color: $primary;
-      color: $primary-contrast;
-  }
+.new-button {
+    margin: 5px;
+    background-color: $primary;
+    color: $primary-contrast;
+}
 
-  .table-button {
-    //background-color: $primary;
-    color: $primary;
-  }
+.table-button {
+  //background-color: $primary;
+  color: $primary;
+}
 
-  .button-cell {
-      text-align: right;
-  }
+.button-cell {
+    text-align: right;
+}
 
-  .mat-cell:last-of-type {
-      padding-right: 5px;
-  }
+.mat-cell:last-of-type {
+    padding-right: 5px;
+}

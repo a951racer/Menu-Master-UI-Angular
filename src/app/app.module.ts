@@ -14,17 +14,14 @@ import { AppRoutes } from './app.routes';
 import { MaterialModule } from './helpers/material/material.module';
 
 import { HomeModule } from './home/home.module';
+import { IngredientModule } from './ingredient/ingredient.module';
 import { DayModule } from './day/day.module';
 import { MealModule } from './meal/meal.module';
-
-import { MealDialogComponent } from './meal/meal-dialog/meal-dialog.component';
-import { ConfirmationDialogComponent } from './helpers/confirmation-dialog/confirmation-dialog.component';
+import { RecipeModule } from './recipe/recipe.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MealDialogComponent,
-    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -32,22 +29,22 @@ import { ConfirmationDialogComponent } from './helpers/confirmation-dialog/confi
     ReactiveFormsModule,
     HttpModule,
     MaterialModule,
-    HomeModule,
     FlexLayoutModule,
+    HomeModule,
+    IngredientModule,
     DayModule,
     MealModule,
+    RecipeModule,
     RouterModule.forRoot(AppRoutes),
   ],
   exports: [
-    MealDialogComponent,
-    ConfirmationDialogComponent
+
   ],
   providers: [
     customHttpProvider
   ],
   entryComponents: [
-    MealDialogComponent,
-    ConfirmationDialogComponent
+
   ],
   bootstrap: [AppComponent]
 })
