@@ -1,5 +1,5 @@
 export const apiConfig = {
-    apiUrl: 'http://localhost:3700',
+    apiUrl: 'https://menu-master-api.herokuapp.com',
     dayURL: '/day',
     mealURL: '/meal',
     recipeURL: '/recipe',

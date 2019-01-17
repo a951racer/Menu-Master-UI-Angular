@@ -13,6 +13,8 @@ import { AppRoutes } from './app.routes';
 
 import { MaterialModule } from './helpers/material/material.module';
 
+import { HelpersModule } from './helpers/helpers.module';
+
 import { HomeModule } from './home/home.module';
 import { IngredientModule } from './ingredient/ingredient.module';
 import { DayModule } from './day/day.module';
@@ -28,6 +30,7 @@ import { RecipeModule } from './recipe/recipe.module';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpModule,
+    HelpersModule,
     MaterialModule,
     FlexLayoutModule,
     HomeModule,

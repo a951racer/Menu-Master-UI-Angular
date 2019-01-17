@@ -1,15 +1,20 @@
 {
-  "name": "angular-min-test-responsive",
+  "name": "menu-master-angular",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ng build --aot --prod"
   },
   "private": true,
+  "engines": {
+    "node": "10.11.0",
+    "npm": "6.4.1"
+  },
   "dependencies": {
     "@angular/animations": "^7.0.1",
     "@angular/cdk": "^7.0.2",
