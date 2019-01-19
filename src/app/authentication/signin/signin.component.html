@@ -1,0 +1,18 @@
+<form>
+  <table class="form">
+    <tr>
+      <td><label [ngClass]="'form-label'">Email:</label></td>
+      <td><input type="text" [(ngModel)]="credentials.email" name="email" [ngClass]="'input-text'"></td>
+    </tr>
+    <tr>
+      <td><label [ngClass]="'form-label'">Password:</label></td>
+      <td><input type="password" [(ngModel)]="credentials.password" name="password" [ngClass]="'input-text'"></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        	<button type="button" (click)="signin()" label="Sign In"><i class="fa fa-sign-in"></i> Sign In!</button>
+      </td>
+    </tr>
+  </table>
+</form>
+<span>{{errorMessage}}</span>
