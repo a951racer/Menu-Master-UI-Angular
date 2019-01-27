@@ -1,5 +1,6 @@
-//const apiUrl = 'https://menu-master-api.herokuapp.com';
-const apiUrl = 'http://localhost:3700';
+import { environment } from '../environments/environment';
+
+const apiUrl = environment.apiUrl;
 
 export const apiConfig = {
     apiUrl: apiUrl,
