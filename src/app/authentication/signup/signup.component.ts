@@ -8,9 +8,9 @@ import { AuthenticationService } from '../authentication.service';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
-  user = {};
+  user: any;
   errorMessage: string;
-  
+
   constructor(private _authenticationService: AuthenticationService,
     private _router: Router) { }
 
@@ -22,8 +22,8 @@ export class SignupComponent implements OnInit {
     this._authenticationService.signup(this.user).subscribe(
       result  => {
         localStorage.setItem('currentUser', JSON.stringify(result));
-        this._router.navigate(['/contacts']), 
-      error => 
+        this._router.navigate(['/']),
+      error =>
         this.errorMessage = error
     });
 
