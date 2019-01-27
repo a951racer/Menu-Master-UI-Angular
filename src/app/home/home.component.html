@@ -1,3 +1,12 @@
-<p>
-  home works!
-</p>
+<h1>Menu Master</h1>
+<div *ngIf="user && authenticated">
+  <div [ngClass]="'navbar'">
+    <button type="button" (click)="signOut()" label="Sign Out" [ngClass]="'button'">Sign out</button>
+  </div>
+</div>
+<div *ngIf="!user || !authenticated">
+  <div [ngClass]="'navbar'">
+      <button (click)="login()" [ngClass]="'button'">Sign In</button>
+      <button (click)="signUp()" [ngClass]="'button'">Sign Up</button>
+  </div>
+</div>

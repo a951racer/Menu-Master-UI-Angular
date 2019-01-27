@@ -1,12 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { HttpModule, RequestOptions } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from '../interceptors/auth-interceptor';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule} from "@angular/forms";
 
-import { customHttpProvider } from '../assets/custom-http';
+//import { customHttpProvider } from '../assets/custom-http';
+
+import { AuthenticationModule } from '../app/authentication/authentication.module';
+import { AuthenticationService } from './authentication/authentication.service';
 
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routes';
@@ -29,7 +34,8 @@ import { RecipeModule } from './recipe/recipe.module';
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    HttpModule,
+    HttpClientModule,
+    AuthenticationModule,
     HelpersModule,
     MaterialModule,
     FlexLayoutModule,
@@ -44,7 +50,8 @@ import { RecipeModule } from './recipe/recipe.module';
 
   ],
   providers: [
-    customHttpProvider
+    AuthenticationService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   entryComponents: [
 

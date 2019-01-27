@@ -6,6 +6,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { IngredientComponent } from './ingredient.component';
 import { IngredientRoutes } from './ingredient.routes';
+import { IngredientService } from './ingredient.service';
 import { IngredientDialogComponent } from './ingredient-dialog/ingredient-dialog.component';
 import { HelpersModule } from '../helpers/helpers.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -26,6 +27,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
   ],
   entryComponents: [
     IngredientDialogComponent
+  ],
+  providers: [
+    IngredientService
   ],
   exports: [
   ]

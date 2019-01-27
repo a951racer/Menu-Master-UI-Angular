@@ -20,8 +20,8 @@ export class SigninComponent {
     this._authenticationService.signin(this.credentials).subscribe(
       result  => {
         localStorage.setItem('currentUser', JSON.stringify(result));
-        this._router.navigate(['/contacts']),
-      error => 
+        this._router.navigate(['/']),
+      error =>
         this.errorMessage = error
     });
   }
