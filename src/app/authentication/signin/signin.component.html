@@ -1,18 +1,20 @@
-<form>
-  <table class="form">
-    <tr>
-      <td><label [ngClass]="'form-label'">Email:</label></td>
-      <td><input type="text" [(ngModel)]="credentials.email" name="email" [ngClass]="'input-text'"></td>
-    </tr>
-    <tr>
-      <td><label [ngClass]="'form-label'">Password:</label></td>
-      <td><input type="password" [(ngModel)]="credentials.password" name="password" [ngClass]="'input-text'"></td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        	<button type="button" (click)="signin()" label="Sign In"><i class="fa fa-sign-in"></i> Sign In!</button>
-      </td>
-    </tr>
-  </table>
-</form>
-<span>{{errorMessage}}</span>
+<h1 mat-dialog-title>{{data.dialogTitle}}</h1>
+      <mat-dialog-content [formGroup]="credentialsForm">
+        <div class="form-container">
+        <mat-form-field>
+          <input matInput
+            placeholder="Email"
+            formControlName="email">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput
+            type="password"
+            placeholder="Password"
+            formControlName="password">
+        </mat-form-field>
+        </div>
+      </mat-dialog-content>
+<div mat-dialog-actions>
+    <button mat-button (click)="signin()" cdkFocusInitial>Sign In</button>
+    <button mat-button (click)="cancel()">Cancel</button>
+</div>
