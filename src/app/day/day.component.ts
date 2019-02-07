@@ -24,7 +24,7 @@ export class DayComponent implements OnInit {
   selectedDay: any;
   showDetails = false;
   showEdit = false;
-  displayedMealColumns = ['dateAdded','note'];
+  displayedMealColumns = ['date','mealSlots'];
   dialogData: any;
 
   @ViewChild('mealTable') mealTable: MatTable<any>;
@@ -40,7 +40,7 @@ export class DayComponent implements OnInit {
   }
 
   onCardClick(id) {
-    if (this.selectedDay.id === id) {
+    if (this.selectedDay._id === id) {
       this.selectedDay = {};
       this.showDetails = false;
     } else {
@@ -82,9 +82,9 @@ export class DayComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(newScotch => {
-      if (newScotch) {
-        this._dayService.insert(newScotch).subscribe(scotch => {
-          this.selectedDay = scotch;
+      if (newDay) {
+        this._dayService.insert(newDay).subscribe(day => {
+          this.selectedDay = day;
           this.showDetails = true;
         });
       }
@@ -103,7 +103,7 @@ export class DayComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
       if (result) {
-        result.id = this.selectedDay.id;
+        result.id = this.selectedDay._id;
         this._dayService.update(result).subscribe(day => {
           this.selectedDay = day;
           this.showDetails = true;

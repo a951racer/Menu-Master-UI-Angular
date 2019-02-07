@@ -1,9 +1,9 @@
 export class day {
     date: Date;
-    comment: String;
+    mealSlots: [];
 
     constructor() {
         this.date = null;
-        this.comment = null;
+        this.mealSlots = [];
     }
 }

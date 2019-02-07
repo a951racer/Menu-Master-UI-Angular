@@ -16,15 +16,29 @@
     margin-top: 10px;
 }
 
+.mat-card-content > :first-child {
+  margin-top: 10px;
+}
+
 .card {
     margin-bottom: 10px;
     cursor: pointer;
 }
 
+.meal-card {
+  margin-top: 20px;
+  cursor: pointer;
+}
+
 .details-card-header {
-    background-color: $primary-dark;
-    color: white;
+    background-color: lightgray;
+    color: black;
     border-radius: 5px;
+    padding-top: 10px;
+}
+
+.details-date {
+  font-size: large;
 }
 
 .title {
@@ -53,42 +67,7 @@
     font-size: 100%;
 }
 
-.rating {
-    color: darkorange;
-    font-size: 120%;
-    margin-bottom: 5px;
-    padding-top: 5px;
-    flex: 0 1 auto;
+.items {
+  font-size: medium;
+  font-weight: bold;
 }
-
-table {
-    width: 100%;
-  }
-
-  .tables {
-      margin: 15px 0 0 0;
-  }
-
-  .inStock {
-      height: auto;
-      width: 25px;
-  }
-
-  .new-button {
-      margin: 5px;
-      background-color: $primary;
-      color: $primary-contrast;
-  }
-
-  .table-button {
-    //background-color: $primary;
-    color: $primary;
-  }
-
-  .button-cell {
-      text-align: right;
-  }
-
-  .mat-cell:last-of-type {
-      padding-right: 5px;
-  }
