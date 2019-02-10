@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IngredientService } from './ingredient.service';
-import { MatTable, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDivider, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { ingredient } from './ingredient.model';
 import { IngredientDialogComponent } from './ingredient-dialog/ingredient-dialog.component'
 import { ConfirmationDialogComponent } from '../helpers/confirmation-dialog/confirmation-dialog.component';
@@ -100,6 +100,7 @@ export class IngredientComponent implements OnInit {
         console.log(result);
         this._ingredientService.update(result).subscribe(ingredient => {
           this.selectedIngredient = ingredient;
+          //this.ingredientList[index] = ingredient;
           this.showDetails = true;
         });
       }
