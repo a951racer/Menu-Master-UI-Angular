@@ -71,3 +71,9 @@
   font-size: medium;
   font-weight: bold;
 }
+
+div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 10px;
+}

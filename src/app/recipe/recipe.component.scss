@@ -93,3 +93,9 @@ table {
   .mat-cell:last-of-type {
       padding-right: 5px;
   }
+
+  div.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 10px;
+  }
