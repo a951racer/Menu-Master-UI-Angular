@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DayService } from './day.service';
 import { MealService } from '../meal/meal.service';
-import { MatTable, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatTable, MatDialog, MatDivider, MAT_DIALOG_DATA} from '@angular/material';
 import { day } from './day.model';
 import { meal } from '../meal/meal.model';
 //import { MealDialogComponent } from '../meal/meal-dialog/meal-dialog.component';

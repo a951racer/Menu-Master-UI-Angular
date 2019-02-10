@@ -71,30 +71,36 @@ table {
     width: 100%;
   }
 
-  .tables {
-      margin: 15px 0 0 0;
-  }
+.tables {
+    margin: 15px 0 0 0;
+}
 
-  .inStock {
-      height: auto;
-      width: 25px;
-  }
+.inStock {
+    height: auto;
+    width: 25px;
+}
 
-  .new-button {
-      margin: 5px;
-      background-color: $primary;
-      color: $primary-contrast;
-  }
+.new-button {
+    margin: 5px;
+    background-color: $primary;
+    color: $primary-contrast;
+}
 
-  .table-button {
-    //background-color: $primary;
-    color: $primary;
-  }
+.table-button {
+  //background-color: $primary;
+  color: $primary;
+}
 
-  .button-cell {
-      text-align: right;
-  }
+.button-cell {
+    text-align: right;
+}
 
-  .mat-cell:last-of-type {
-      padding-right: 5px;
-  }
+.mat-cell:last-of-type {
+    padding-right: 5px;
+}
+
+div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
