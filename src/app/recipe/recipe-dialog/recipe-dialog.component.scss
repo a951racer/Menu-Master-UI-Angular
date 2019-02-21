@@ -3,11 +3,20 @@
   height: auto;
 }
 
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 235px;
+  bottom: 10px;
+}
+
 .sticky-header {
-  position: absolute;
-  left: 0;
-  top: 0;
-  //width: 100%;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 10px;
+  bottom: 10px;
+  z-index: 1000;
+  background-color: white;
 }
 
 .form-input {
@@ -17,7 +26,7 @@
 .ingredient-container {
     width: 200px;
     max-width: 100%;
-    min-height: 80px;
+    min-height: 300px;
     margin: 0 25px 25px 0;
     display: inline-block;
     vertical-align: top;
@@ -25,7 +34,7 @@
 
 .ingredient-list {
   //border: solid 1px #ccc;
-  min-height: 250px;
+  min-height: 300px;
   width: 265px;
   background: white;
   border-radius: 4px;
@@ -54,6 +63,10 @@
 
 .right-col {
   align-items: flex-end;
+}
+
+.drag {
+  z-index: -1;
 }
 
 ////////////////////////////////////

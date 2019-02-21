@@ -1,5 +1,5 @@
   <mat-dialog-content [formGroup]="recipeForm">
-  <div class="header">
+  <div class="sticky-header">
     <div class="mat-title" mat-dialog-title>{{data.dialogTitle}}</div>
     <mat-form-field class="form-input">
       <input matInput
@@ -19,7 +19,7 @@
   </mat-form-field>
 
   <div *ngIf="isDataAvailable">
-    <div fxLayout="row" fxLayoutAlign="space-between center ">
+    <div fxLayout="row" fxLayoutAlign="space-between start">
         <div fxFlex="0 1 50%" class="left-col">
           <div class="mat-title">Ingredients for {{ data.name }}</div>
         </div>
@@ -29,9 +29,10 @@
     </div>
   </div>
 </div>
-  <div *ngIf="isDataAvailable">
-    <div fxLayout="row" fxLayoutAlign="space-between center">
-      <div fxFlex="0 1 50%" class="left-col ingredient-container">
+
+  <div *ngIf="isDataAvailable" class="drag">
+    <div fxLayout="row" fxLayoutAlign="space-between start">
+      <div fxFlex="0 1 50%" class="left-col ingredient-container sticky">
         <div
           cdkDropList
           id="recipeIngredientList"
