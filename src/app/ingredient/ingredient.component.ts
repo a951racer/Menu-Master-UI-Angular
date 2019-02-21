@@ -3,6 +3,7 @@ import { IngredientService } from './ingredient.service';
 import { MatDivider, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { ingredient } from './ingredient.model';
 import { IngredientDialogComponent } from './ingredient-dialog/ingredient-dialog.component'
+import { IngredientImportDialogComponent } from './ingredient-import-dialog/ingredient-import-dialog.component'
 import { ConfirmationDialogComponent } from '../helpers/confirmation-dialog/confirmation-dialog.component';
 
 
@@ -124,6 +125,25 @@ export class IngredientComponent implements OnInit {
           this.showDetails = false;
         });
       }
+    });
+  }
+
+  importIngredients() {
+    this.dialogData = {filename: ''}
+    const dialogRef = this.dialog.open(IngredientImportDialogComponent, {
+      width: '300px',
+      height: 'auto',
+      data: this.dialogData
+    });
+
+    dialogRef.afterClosed().subscribe(filename => {
+      if (filename) {
+        console.log(filename)
+        //this._ingredientService.delete(ingredient).subscribe(response => {
+          //this.selectedIngredient = {};
+          //this.showDetails = false;
+        }//);
+      //}
     });
   }
 }

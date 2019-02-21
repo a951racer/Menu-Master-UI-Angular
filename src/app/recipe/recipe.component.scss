@@ -22,10 +22,7 @@
 }
 
 .details-card-header {
-    background-color: lightgray;
     color: $primary;
-    border-radius: 5px;
-    padding-top: 10px;
 }
 
 .title {
@@ -54,12 +51,12 @@
     font-size: 100%;
 }
 
-.rating {
-    color: darkorange;
-    font-size: 120%;
-    margin-bottom: 5px;
-    padding-top: 5px;
-    flex: 0 1 auto;
+.item {
+  font-size: medium;
+}
+
+.mat-list-item.mat-list-item-avatar.mat-list-item-with-avatar {
+  height: 36px;
 }
 
 table {

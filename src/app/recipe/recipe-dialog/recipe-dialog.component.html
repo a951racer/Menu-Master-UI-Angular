@@ -1,0 +1,65 @@
+  <mat-dialog-content [formGroup]="recipeForm">
+  <div class="header">
+    <div class="mat-title" mat-dialog-title>{{data.dialogTitle}}</div>
+    <mat-form-field class="form-input">
+      <input matInput
+      placeholder="Recipe Name"
+      formControlName="name">
+    </mat-form-field>
+    <br>
+    <mat-form-field class="form-input">
+      <textarea matInput
+      cdkTextareaAutosize
+      #autosize="cdkTextareaAutosize"
+      cdkAutosizeMinRows="1"
+      cdkAutosizeMaxRows="5"
+      placeholder="Decription"
+      formControlName="description">
+    </textarea>
+  </mat-form-field>
+
+  <div *ngIf="isDataAvailable">
+    <div fxLayout="row" fxLayoutAlign="space-between center ">
+        <div fxFlex="0 1 50%" class="left-col">
+          <div class="mat-title">Ingredients for {{ data.name }}</div>
+        </div>
+        <div fxFlex="0 1 50%" class="right-col">
+          <div class="mat-title">Ingredients Available</div>
+        </div>
+    </div>
+  </div>
+</div>
+  <div *ngIf="isDataAvailable">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div fxFlex="0 1 50%" class="left-col ingredient-container">
+        <div
+          cdkDropList
+          id="recipeIngredientList"
+          #recipeIngredientList="cdkDropList"
+          [cdkDropListData]="editableIngredientList"
+          [cdkDropListConnectedTo]="[ingredientList]"
+          class="ingredient-list"
+          (cdkDropListDropped)="recipeListDrop($event)">
+            <mat-card class="ingredient-box" *ngFor="let item of editableIngredientList" cdkDrag>{{item.name}}</mat-card>
+        </div>
+      </div>
+
+      <div fxFlex="0 1 50%" class="right-col ingredient-container">
+        <div
+          cdkDropList
+          id="masterIngredientList"
+          #ingredientList="cdkDropList"
+          [cdkDropListData]="masterIngredientList"
+          [cdkDropListConnectedTo]="[recipeIngredientList]"
+          class="ingredient-list"
+          (cdkDropListDropped)="masterListDrop($event)">
+            <mat-card class="ingredient-box" *ngFor="let item of masterIngredientList" cdkDrag>{{item.name}}</mat-card>
+        </div>
+    </div>
+  </div>
+</div>
+</mat-dialog-content>
+<div mat-dialog-actions>
+    <button mat-button (click)="save()" cdkFocusInitial>Save</button>
+    <button mat-button (click)="onCancelClick()">Cancel</button>
+</div>

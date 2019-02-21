@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RecipeService } from './recipe.service';
 import { MatTable, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { recipe } from './recipe.model';
+import { RecipeDialogComponent } from './recipe-dialog/recipe-dialog.component'
+import { ConfirmationDialogComponent } from '../helpers/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-recipe',
@@ -15,7 +17,6 @@ export class RecipeComponent implements OnInit {
   selectedRecipe: any;
   showDetails = false;
   showEdit = false;
-  displayedRecipeColumns = ['name','description'];
   dialogData: any;
 
   constructor(private _recipeService: RecipeService,
@@ -63,15 +64,72 @@ export class RecipeComponent implements OnInit {
   }
 
   newRecipe() {
+    let newrecipe = new recipe();
+    this.dialogData = newrecipe;
+    this.dialogData.dialogTitle = 'New Recipe';
+    const dialogRef = this.dialog.open(RecipeDialogComponent, {
+      width: '700px',
+      height: 'auto',
+      data: this.dialogData
+    });
 
+    dialogRef.afterClosed().subscribe(newRecipe => {
+      if (newRecipe) {
+        this._recipeService.insert(newRecipe).subscribe(recipe => {
+          this.selectedRecipe = recipe;
+          this.showDetails = true;
+          const newRecipeList = [...this.recipeList];
+          newRecipeList.push(recipe);
+          this.recipeList = newRecipeList;
 
+        });
+      }
+    });
   }
 
   editRecipe(recipe) {
+    let selectedIndex = this.recipeList.findIndex((r) => r._id === recipe._id);
+    this.dialogData = this.selectedRecipe;
+    this.dialogData.dialogTitle = 'Edit Recipe';
+    const dialogRef = this.dialog.open(RecipeDialogComponent, {
+      width: '700px',
+      height: 'auto',
+      data: this.dialogData
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        result.id = this.selectedRecipe.id;
+        this._recipeService.update(result).subscribe(recipe => {
+          this.selectedRecipe = recipe;
+          const newRecipeList = [...this.recipeList];
+          newRecipeList[selectedIndex] = recipe;
+          this.recipeList = newRecipeList;
+
+          //this.recipeList[index] = recipe;
+          this.showDetails = true;
+        });
+      }
+    });
   }
 
   deleteRecipe(recipe) {
+    this.dialogData = {};
+    this.dialogData.dialogTitle = 'Delete recipe';
+    this.dialogData.dialogMessage = 'Delete this recipe?';
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '300px',
+      height: 'auto',
+      data: this.dialogData
+    });
 
+    dialogRef.afterClosed().subscribe(confirmation => {
+      if (confirmation) {
+        this._recipeService.delete(recipe).subscribe(response => {
+          this.selectedRecipe = {};
+          this.showDetails = false;
+        });
+      }
+    });
   }
 }
