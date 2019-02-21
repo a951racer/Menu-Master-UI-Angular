@@ -15,7 +15,8 @@ import { MatToolbarModule,
          MatIconModule,
          MatSidenavModule,
          MatDividerModule,
-         MatListModule } from '@angular/material';
+         MatListModule, } from '@angular/material';
+import { ScrollDispatchModule } from '@angular/cdk/scrolling'
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { MatToolbarModule,
     DragDropModule,
     MatSidenavModule,
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    ScrollDispatchModule
   ],
   exports: [
     MatToolbarModule,
@@ -52,7 +54,8 @@ import { MatToolbarModule,
     DragDropModule,
     MatSidenavModule,
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    ScrollDispatchModule
   ],
   declarations: []
 })
