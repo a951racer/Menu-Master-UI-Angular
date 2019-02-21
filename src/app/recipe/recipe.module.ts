@@ -6,6 +6,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { RecipeComponent } from './recipe.component';
 import { RecipeRoutes } from './recipe.routes';
+import { RecipeDialogComponent } from './recipe-dialog/recipe-dialog.component';
 import { HelpersModule } from '../helpers/helpers.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
@@ -21,8 +22,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
   ],
   declarations: [
     RecipeComponent,
+    RecipeDialogComponent
   ],
   entryComponents: [
+    RecipeDialogComponent
   ],
   exports: [
   ]

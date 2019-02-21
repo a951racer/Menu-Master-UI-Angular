@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>{{data.dialogTitle}}</h1>
+      <mat-dialog-content [formGroup]="ingredientImportForm">
+        <div class="form-container">
+          <span>Select File:</span>
+          <input
+            type="file"
+            placeholder="Select file"
+            formControlName="filename">
+        </div>
+      </mat-dialog-content>
+<div mat-dialog-actions>
+    <button mat-button (click)="import()" cdkFocusInitial>Import</button>
+    <button mat-button (click)="onCancelClick()">Cancel</button>
+</div>

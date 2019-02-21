@@ -14,7 +14,8 @@ import { MatToolbarModule,
          MatCheckboxModule,
          MatIconModule,
          MatSidenavModule,
-         MatDividerModule } from '@angular/material';
+         MatDividerModule,
+         MatListModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { MatToolbarModule,
     MatIconModule,
     DragDropModule,
     MatSidenavModule,
-    MatDividerModule
+    MatDividerModule,
+    MatListModule
   ],
   exports: [
     MatToolbarModule,
@@ -49,7 +51,8 @@ import { MatToolbarModule,
     MatIconModule,
     DragDropModule,
     MatSidenavModule,
-    MatDividerModule
+    MatDividerModule,
+    MatListModule
   ],
   declarations: []
 })
