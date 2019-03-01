@@ -28,7 +28,7 @@
       <div id="details" *ngIf="showDetails">
         <div>
           <mat-card class="details-card mat-elevation-z8">
-            <mat-card-header class="details-card-header mat-elevation-z6">
+            <mat-card-header class="details-card-header">
               <mat-card-title>
                   {{ selectedDay.date |  date:'EEEE'}}
               </mat-card-title>
@@ -37,16 +37,18 @@
               </mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
-              <mat-card class="meal-card" *ngFor="let meal of selectedDay.mealSlots">
+              <mat-card class="meal-card" (click)="editMeal(meal)" *ngFor="let meal of selectedDay.mealSlots">
                   <mat-card-header>
-                    <mat-card-title>
-                      {{ meal.meal}}
+                    <mat-card-title class="meal-card-title">
+                      {{ meal.name}}
                     </mat-card-title>
                   </mat-card-header>
                   <mat-card-content>
-                      <div class="items" *ngFor="let item of meal.recipes">
-                      {{ item.name }}
-                    </div>
+                    <mat-list>
+                      <mat-list-item class="items" *ngFor="let item of meal.recipes">
+                        <mat-icon matListIcon>keyboard_arrow_right</mat-icon> {{ item.name }}
+                      </mat-list-item>
+                    </mat-list>
                   </mat-card-content>
               </mat-card>
 

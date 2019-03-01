@@ -1,49 +1,54 @@
-<h1 mat-dialog-title>{{data.dialogTitle}}</h1>
-<mat-dialog-content [formGroup]="dayForm">
-  <mat-form-field>
-    <input matInput
-      [matDatepicker]="myDatepicker"
+  <mat-dialog-content [formGroup]="dayForm">
+  <div class="sticky-header">
+    <div class="mat-title" mat-dialog-title>{{data.dialogTitle}}</div>
+    <mat-form-field class="form-input">
+      <input matInput
       placeholder="Date"
-      formControlName="data.date">
-    <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
-    <mat-datepicker #myDatepicker></mat-datepicker>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput
-    placeholder="Comment"
-    formControlName="data.comment">
-  </mat-form-field>
-
+      formControlName="date">
+    </mat-form-field>
+    <br>
 
   <div *ngIf="isDataAvailable">
-    <div fxLayout="row" fxLayoutAlign="space-between center " class="dayDialog">
-        <div fxFlex="0 1 50%" class="left-col meal-container">
-              <h2>Meals for {{ data.date }}</h2>
-              <div
-                cdkDropList
-                #dayMealList="cdkDropList"
-                [cdkDropListData]="data.mealList"
-                [cdkDropListConnectedTo]="[mealList]"
-                class="meal-list"
-                (cdkDropListDropped)="drop($event)">
-                  <div class="meal-box" *ngFor="let item of data.mealList" cdkDrag>{{item.name}}</div>
-              </div>
+    <div fxLayout="row" fxLayoutAlign="space-between start">
+        <div fxFlex="0 1 50%" class="left-col">
+          <div class="mat-title">Meals for {{ data.date |  date:'EEEE'}}, {{ data.date |  date:'shortDate'}}</div>
         </div>
-    </div>
-
-    <div fxFlex="0 1 50%" class="right-col meal-container">
-        <h2>Meals</h2>
-        <div
-          cdkDropList
-          #mealList="cdkDropList"
-          [cdkDropListData]="meals"
-          [cdkDropListConnectedTo]="[dayMealList]"
-          class="meal-list"
-          (cdkDropListDropped)="drop($event)">
-            <div class="meal-box" *ngFor="let item of meals" cdkDrag>{{item.name}}</div>
+        <div fxFlex="0 1 50%" class="right-col">
+          <div class="mat-title">Meals Available</div>
         </div>
     </div>
   </div>
+</div>
+
+  <div *ngIf="isDataAvailable" class="drag">
+    <div fxLayout="row" fxLayoutAlign="space-between start">
+      <div fxFlex="0 1 50%" class="left-col meal-container sticky">
+        <div
+          cdkDropList
+          id="dayMealList"
+          #dayMealList="cdkDropList"
+          [cdkDropListData]="editableMealList"
+          [cdkDropListConnectedTo]="[mealList]"
+          class="meal-list"
+          (cdkDropListDropped)="dayListDrop($event)">
+            <mat-card class="meal-box" *ngFor="let item of editableMealList" cdkDrag>{{item.name}}</mat-card>
+        </div>
+      </div>
+
+      <div fxFlex="0 1 50%" class="right-col meal-container">
+        <div
+          cdkDropList
+          id="masterMealList"
+          #mealList="cdkDropList"
+          [cdkDropListData]="masterMealList"
+          [cdkDropListConnectedTo]="[dayMealList]"
+          class="meal-list"
+          (cdkDropListDropped)="masterListDrop($event)">
+            <mat-card class="meal-box" *ngFor="let item of masterMealList" cdkDrag>{{item.name}}</mat-card>
+        </div>
+    </div>
+  </div>
+</div>
 </mat-dialog-content>
 <div mat-dialog-actions>
     <button mat-button (click)="save()" cdkFocusInitial>Save</button>
