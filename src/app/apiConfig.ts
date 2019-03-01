@@ -8,6 +8,7 @@ export const apiConfig = {
     signupURL: apiUrl + '/auth/register',
     dayURL: apiUrl + '/day',
     mealURL: apiUrl + '/meal',
+    mealSlotURL: apiUrl + '/mealSlot',
     recipeURL: apiUrl + '/recipe',
     ingredientURL: apiUrl + '/ingredient',
     menuURl: apiUrl + '/menu'

@@ -1,10 +1,12 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { FormBuilder, FormGroup} from "@angular/forms";
-import { MealComponent } from '../../meal/meal.component';
-import { MealService } from 'src/app/meal/meal.service';
-import { ConstantPool } from '@angular/compiler';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem  } from '@angular/cdk/drag-drop';
+import * as _  from 'lodash';
+
+import { MealService } from '../../meal/meal.service'
+import { MealSlotDialogComponent } from '../mealSlot-dialog/mealSlot-dialog.component';
+import { Meal } from '../../meal/meal.model';
 
 @Component({
   selector: 'app-day-dialog',
@@ -16,9 +18,11 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 })
 
 export class DayDialogComponent implements OnInit {
-  dayForm: FormGroup;
+  dayForm: FormGroup
   labelPosition = 'before';
-  meals: [];
+  masterMealList: any;
+  editableMealList: any;
+  mealCatalog: any;
   isDataAvailable = false;
 
   constructor(private fb: FormBuilder,
@@ -30,37 +34,47 @@ export class DayDialogComponent implements OnInit {
 
   ngOnInit() {
     this._mealService.list().subscribe(mealList => {
-
-      this.meals = mealList;
-      if (!this.data.mealList) {
-        this.data.mealList = [];
+      this.mealCatalog = mealList;
+      if (!this.data.mealSlots) {
+        this.editableMealList = [];
+      } else {
+        this.editableMealList = this.clone(this.data.mealSlots);
+        this.masterMealList = _.filter(this.mealCatalog, (meal) => !_.some(this.editableMealList, {'name': meal.name}));
       }
       this.isDataAvailable = true;
     });
   }
 
-  drop(event: CdkDragDrop<string[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
+  dayListDrop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer !== event.container) {
       transferArrayItem(event.previousContainer.data,
                         event.container.data,
                         event.previousIndex,
-                        event.currentIndex);
-    }
-    if (this.data.mealList.length > 1) {
-      const placeHolderIndex = this.data.mealList.findIndex(function(a){return a.id === -1});
-      console.log(this.data.mealList);
-      console.log(placeHolderIndex);
-      if (placeHolderIndex === 0) {
-        this.data.mealList.slice(1);
-      } else {
-        this.data.mealList.slice(0, placeHolderIndex - 1) + this.data.mealList.slice(placeHolderIndex + 1)
-      }
+                        event.currentIndex,);
     }
   }
 
+  masterListDrop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer !== event.container) {
+      this.editableMealList.splice(event.previousIndex, 1);
+    }
+  }
+
+  clone(list) {
+    let newList = []
+    list.forEach(listItem => {
+      newList.push(listItem);
+    });
+    return newList;
+  }
+
   save() {
+    this.editableMealList.forEach(meal => {
+      if (this.mealCatalog.some(masterMeal => masterMeal._id === meal._id)) {
+        delete meal._id;
+      }
+    });
+    this.dayForm.value.mealSlots = this.editableMealList;
     this.dialogRef.close(this.dayForm.value);
   }
 

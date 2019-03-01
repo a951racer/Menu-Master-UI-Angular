@@ -8,10 +8,13 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DayComponent } from './day.component';
 import { DayRoutes } from './day.routes';
 import { HelpersModule } from '../helpers/helpers.module';
-import { DayDialogComponent } from './day-dialog/day-dialog.component';
 
-//import { MealDialogComponent } from '../meal/meal-dialog/meal-dialog.component';
+import { DayDialogComponent } from './day-dialog/day-dialog.component';
+import { MealSlotDialogComponent } from './mealSlot-dialog/mealSlot-dialog.component';
 //import { ConfirmationDialogComponent } from '../helpers/confirmation-dialog/confirmation-dialog.component';
+
+import { DayService } from './day.service';
+import { MealSlotService } from '../mealSlot/mealSlot.service';
 
 @NgModule({
   imports: [
@@ -26,16 +29,20 @@ import { DayDialogComponent } from './day-dialog/day-dialog.component';
   declarations: [
     DayComponent,
     DayDialogComponent,
-    //MealDialogComponent,
+    MealSlotDialogComponent
     //ConfirmationDialogComponent
   ],
   entryComponents: [
     DayDialogComponent,
-    //MealDialogComponent,
+    MealSlotDialogComponent,
     //ConfirmationDialogComponent
   ],
   exports: [
     //MealDialogComponent,
+  ],
+  providers: [
+    DayService,
+    MealSlotService
   ]
 })
 export class DayModule { }

@@ -1,13 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DayService } from './day.service';
-import { MealService } from '../meal/meal.service';
+import { MealSlotService } from '../mealSlot/mealSlot.service';
 import { MatTable, MatDialog, MatDivider, MAT_DIALOG_DATA} from '@angular/material';
-import { day } from './day.model';
-import { meal } from '../meal/meal.model';
-//import { MealDialogComponent } from '../meal/meal-dialog/meal-dialog.component';
+import { Day } from './day.model';
+import { Meal } from '../meal/meal.model';
+import { MealSlotDialogComponent } from './mealSlot-dialog/mealSlot-dialog.component';
 import { DayDialogComponent } from './day-dialog/day-dialog.component';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { ConfirmationDialogComponent } from '../helpers/confirmation-dialog/confirmation-dialog.component';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-day',
@@ -24,19 +25,20 @@ export class DayComponent implements OnInit {
   selectedDay: any;
   showDetails = false;
   showEdit = false;
-  displayedMealColumns = ['date','mealSlots'];
   dialogData: any;
 
   @ViewChild('mealTable') mealTable: MatTable<any>;
 
   constructor(private _dayService: DayService,
-              //private _mealService: MealService,
-              public dialog: MatDialog)
+              private _mealSlotService: MealSlotService,
+              public dialog: MatDialog,)
   { }
 
   ngOnInit() {
-    this._dayService.list().subscribe(dayList  => this.dayList = dayList);
-    this.selectedDay = {};
+    this._dayService.list().subscribe(dayList  => {
+      this.dayList = dayList;
+      this.selectedDay = {};
+    })
   }
 
   onCardClick(id) {
@@ -59,7 +61,7 @@ export class DayComponent implements OnInit {
   handleButtonClick(buttonName) {
     switch (buttonName) {
       case 'edit':
-        this.editDay(day);
+        this.editDay(this.selectedDay);
         break;
       case 'close':
         this.selectedDay = {};
@@ -72,19 +74,22 @@ export class DayComponent implements OnInit {
   }
 
   newDay() {
-    let newDay = new day();
+    let newDay = new Day();
     this.dialogData = newDay;
     this.dialogData.dialogTitle = 'New Day';
     const dialogRef = this.dialog.open(DayDialogComponent, {
-      width: '450px',
+      width: '700px',
       height: 'auto',
       data: this.dialogData
     });
 
-    dialogRef.afterClosed().subscribe(newScotch => {
+    dialogRef.afterClosed().subscribe(newDay => {
       if (newDay) {
         this._dayService.insert(newDay).subscribe(day => {
           this.selectedDay = day;
+          const newDayList = [...this.dayList];
+          newDayList.push(day);
+          this.dayList = newDayList;
           this.showDetails = true;
         });
       }
@@ -92,20 +97,23 @@ export class DayComponent implements OnInit {
   }
 
   editDay(day) {
+    let selectedIndex = this.dayList.findIndex((d) => d._id === day._id);
     this.dialogData = this.selectedDay;
     this.dialogData.dialogTitle = 'Edit Day';
     const dialogRef = this.dialog.open(DayDialogComponent, {
-      width: 'auto',
+      width: '700px',
       height: 'auto',
       data: this.dialogData
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       if (result) {
         result.id = this.selectedDay._id;
         this._dayService.update(result).subscribe(day => {
           this.selectedDay = day;
+          const newDayList = [...this.dayList];
+          newDayList[selectedIndex] = day;
+          this.dayList = newDayList;
           this.showDetails = true;
         });
       }
@@ -115,7 +123,7 @@ export class DayComponent implements OnInit {
   deleteDay(day) {
     this.dialogData = {};
     this.dialogData.dialogTitle = 'Delete Day';
-    this.dialogData.dialogMessage = 'Delete this day?';
+    this.dialogData.dialogMessage = `Delete ${moment(day.date).format('dddd')}, ${moment(day.date).format('L')}?`;
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '300px',
       height: 'auto',
@@ -132,64 +140,26 @@ export class DayComponent implements OnInit {
     });
   }
 
-  /*
-  newMeal(id) {
-    let newMeal = new meal();
-    this.dialogData = newMeal;
-    this.dialogData.dialogTitle = 'New Meal';
-    const dialogRef = this.dialog.open(MealDialogComponent, {
-      width: '300px',
-      height: 'auto',
-      data: this.dialogData
-    });
-
-    dialogRef.afterClosed().subscribe(newMeal => {
-      this._dayService.addMeal(this.selectedDay, newMeal).subscribe(meal => {
-        this.selectedDay.mealList.push(meal);
-        this.mealTable.renderRows();
-      });
-    });
-  }
-
   editMeal(meal) {
+    let selectedIndex = this.selectedDay.mealSlots.findIndex((ms) => ms._id === meal._id);
     this.dialogData = meal;
-    this.dialogData.dialogTitle = 'Edit Meal';
-    const dialogRef = this.dialog.open(MealDialogComponent, {
-      width: '300px',
+    this.dialogData.dialogTitle = `Edit ${meal.name} for ${moment(this.selectedDay.date).format('dddd')}`;
+    const dialogRef = this.dialog.open(MealSlotDialogComponent, {
+      width: '700px',
       height: 'auto',
       data: this.dialogData
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        result.id = meal.id;
-        this._mealService.updateMeal(result).subscribe(updatedMeal => {
-          this.selectedDay.mealList.pop(meal);
-          this.selectedDay.mealList.push(updatedMeal)
-          this.mealTable.renderRows();
+        result.id = meal._id;
+        this._mealSlotService.update(result).subscribe(meal => {
+          const newMealList = [...this.selectedDay.mealSlots];
+          newMealList[selectedIndex] = meal;
+          this.selectedDay.mealSlots = newMealList;
+          this.showDetails = true;
         });
       }
     });
   }
-
-  deleteMeal(meal) {
-    this.dialogData = {};
-    this.dialogData.dialogTitle = 'Delete Meal';
-    this.dialogData.dialogMessage = 'Delete this meal?';
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      width: '300px',
-      height: 'auto',
-      data: this.dialogData
-    });
-
-    dialogRef.afterClosed().subscribe(confirmation => {
-      if (confirmation) {
-        this._mealService.deleteMeal(meal).subscribe(response => {
-          this.selectedDay.tastingList.pop(meal);
-          this.mealTable.renderRows();
-        });
-      }
-    });
-  }
-  */
 }

@@ -1,4 +1,4 @@
-export class day {
+export class Day {
     date: Date;
     mealSlots: [];
 

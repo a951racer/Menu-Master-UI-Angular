@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MealService } from './meal.service';
 import { MealDialogComponent } from './meal-dialog/meal-dialog.component'
 import { MatTable, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import { meal } from './meal.model';
+import { Meal } from './meal.model';
 import { ConfirmationDialogComponent } from '../helpers/confirmation-dialog/confirmation-dialog.component';
 
 
@@ -53,7 +53,7 @@ export class MealComponent implements OnInit {
   handleButtonClick(buttonName) {
     switch (buttonName) {
       case 'edit':
-        this.editMeal(meal);
+        this.editMeal(this.selectedMeal);
         break;
       case 'close':
         this.selectedMeal = {};
@@ -66,7 +66,7 @@ export class MealComponent implements OnInit {
   }
 
   newMeal() {
-    let newmeal = new meal();
+    let newmeal = new Meal();
     this.dialogData = newmeal;
     this.dialogData.dialogTitle = 'New meal';
     const dialogRef = this.dialog.open(MealDialogComponent, {

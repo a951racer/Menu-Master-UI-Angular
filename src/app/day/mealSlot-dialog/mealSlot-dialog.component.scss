@@ -1,4 +1,4 @@
-.day-dialog {
+.mealSlot-dialog {
   width: 700px;
   height: auto;
 }
@@ -23,7 +23,7 @@
   width: 100%;
 }
 
-.meal-container {
+.recipe-container {
     width: 200px;
     max-width: 100%;
     min-height: 300px;
@@ -32,7 +32,7 @@
     vertical-align: top;
 }
 
-.meal-list {
+.recipe-list {
   //border: solid 1px #ccc;
   min-height: 300px;
   width: 265px;
@@ -42,7 +42,7 @@
   display: block;
 }
 
-.meal-box {
+.recipe-box {
   padding: 10px 10px;
   margin: 3px 6px;
   border-bottom: solid 1px #ccc;
@@ -87,10 +87,10 @@
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-.meal-box:last-child {
+.recipe-box:last-child {
   border: none;
 }
 
-.meal-list.cdk-drop-list-dragging .meal-box:not(.cdk-drag-placeholder) {
+.recipe-list.cdk-drop-list-dragging .recipe-box:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
