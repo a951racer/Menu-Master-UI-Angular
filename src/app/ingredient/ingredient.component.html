@@ -1,4 +1,4 @@
-<h1>Ingredients</h1>
+<div class="mat-headline">Grocery Items</div>
 <button mat-raised-button class="new-button" (click)="newIngredient()">New</button>
 <button mat-raised-button class="new-button" (click)="importIngredients()">Import</button>
 <div fxLayout="row" fxLayoutAlign="space-between start " class="ingredientPage">
@@ -21,7 +21,7 @@
   <div fxFlex="0 1 50%" class="right-col sticky">
       <div *ngIf="!showDetails">
         <mat-card>
-          Click an ingredient to see details
+          Click a grocery item to see details
         </mat-card>
       </div>
 
