@@ -1,4 +1,4 @@
-<h1>Recipes</h1>
+<div class="mat-headline">Dishes</div>
 <button mat-raised-button class="new-button" (click)="newRecipe()">New</button>
 <div fxLayout="row" fxLayoutAlign="space-between start " class="recipePage">
   <!-- List -->
@@ -21,7 +21,7 @@
   <div fxFlex="0 1 50%" class="right-col sticky">
       <div *ngIf="!showDetails">
         <mat-card>
-          Click a recipe to see details
+          Click a dish to see details
         </mat-card>
       </div>
 

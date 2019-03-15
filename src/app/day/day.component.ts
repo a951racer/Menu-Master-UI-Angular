@@ -8,7 +8,7 @@ import { MealSlotDialogComponent } from './mealSlot-dialog/mealSlot-dialog.compo
 import { DayDialogComponent } from './day-dialog/day-dialog.component';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { ConfirmationDialogComponent } from '../helpers/confirmation-dialog/confirmation-dialog.component';
-import * as moment from 'moment';
+//import * as moment from 'moment';
 
 @Component({
   selector: 'app-day',
@@ -123,7 +123,8 @@ export class DayComponent implements OnInit {
   deleteDay(day) {
     this.dialogData = {};
     this.dialogData.dialogTitle = 'Delete Day';
-    this.dialogData.dialogMessage = `Delete ${moment(day.date).format('dddd')}, ${moment(day.date).format('L')}?`;
+    //this.dialogData.dialogMessage = `Delete ${moment(day.date).format('dddd')}, ${moment(day.date).format('L')}?`;
+    this.dialogData.dialogMessage = `Delete ?`
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '300px',
       height: 'auto',
@@ -143,7 +144,8 @@ export class DayComponent implements OnInit {
   editMeal(meal) {
     let selectedIndex = this.selectedDay.mealSlots.findIndex((ms) => ms._id === meal._id);
     this.dialogData = meal;
-    this.dialogData.dialogTitle = `Edit ${meal.name} for ${moment(this.selectedDay.date).format('dddd')}`;
+    //this.dialogData.dialogTitle = `Edit ${meal.name} for ${moment(this.selectedDay.date).format('dddd')}`;
+    this.dialogData.dialogTitle = `Edit This`
     const dialogRef = this.dialog.open(MealSlotDialogComponent, {
       width: '700px',
       height: 'auto',

@@ -1,12 +1,17 @@
-<h1>Menu Master</h1>
+<div class="home-page">
+<div class="mat-display-3 home">Home</div>
+<div>
+  <img class="logo" src="../../assets/Menu Master-logo.png">
+</div>
 <div *ngIf="user && authenticated">
   <div [ngClass]="'navbar'">
-    <button type="button" (click)="signOut()" label="Sign Out" [ngClass]="'button'">Sign out</button>
+    <a mat-raised-button class="new-button" (click)="signOut()">Sign Out</a>
   </div>
 </div>
 <div *ngIf="!user || !authenticated">
   <div [ngClass]="'navbar'">
-      <button (click)="login()" [ngClass]="'button'">Sign In</button>
-      <button (click)="signUp()" [ngClass]="'button'">Sign Up</button>
+    <a mat-raised-button class="new-button" (click)="login()">Sign In</a>
+    <a mat-raised-button class="new-button" (click)="signUp()">Sign Up</a>
   </div>
+</div>
 </div>

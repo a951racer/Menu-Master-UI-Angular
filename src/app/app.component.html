@@ -6,10 +6,15 @@
 
   <span>
       <a mat-button routerLink="/" routerLinkActive="selected mat-raised-button" [routerLinkActiveOptions]="{exact: true}">Home</a>
-      <a mat-button routerLink="/day"  routerLinkActive="selected mat-raised-button" [routerLinkActiveOptions]="{exact: true}">Menu</a>
-      <a mat-button routerLink="/recipe"  routerLinkActive="selected mat-raised-button" [routerLinkActiveOptions]="{exact: true}">Recipes</a>
-      <a mat-button routerLink="/ingredient"  routerLinkActive="selected mat-raised-button" [routerLinkActiveOptions]="{exact: true}">Ingredients</a>
-      <a mat-button routerLink="/meal"  routerLinkActive="selected mat-raised-button" [routerLinkActiveOptions]="{exact: true}">Meals</a>
+      <a mat-button routerLink="/day"  routerLinkActive="selected mat-raised-button" [routerLinkActiveOptions]="{exact: true}">Menus</a>
+      <a mat-button routerLink="/recipe"  routerLinkActive="selected mat-raised-button" [routerLinkActiveOptions]="{exact: true}">Dishes</a>
+      <a mat-button routerLink="/shopping"  routerLinkActive="selected mat-raised-button" [routerLinkActiveOptions]="{exact: true}">Shopping Lists</a>
+      <a mat-button [matMenuTriggerFor]="settingsMenu">Settings</a>
+      <mat-menu #settingsMenu="matMenu">
+        <a mat-button routerLink="/meal"  routerLinkActive="selected mat-raised-button" [routerLinkActiveOptions]="{exact: true}">Meals</a><br>
+        <a mat-button routerLink="/ingredient"  routerLinkActive="selected mat-raised-button" [routerLinkActiveOptions]="{exact: true}">Grocery Items</a>
+      </mat-menu>
+
   </span>
 </mat-toolbar>
 

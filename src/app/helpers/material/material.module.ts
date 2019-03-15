@@ -15,7 +15,8 @@ import { MatToolbarModule,
          MatIconModule,
          MatSidenavModule,
          MatDividerModule,
-         MatListModule, } from '@angular/material';
+         MatListModule,
+         MatMenuModule } from '@angular/material';
 import { ScrollDispatchModule } from '@angular/cdk/scrolling'
 
 @NgModule({
@@ -37,7 +38,8 @@ import { ScrollDispatchModule } from '@angular/cdk/scrolling'
     MatSidenavModule,
     MatDividerModule,
     MatListModule,
-    ScrollDispatchModule
+    ScrollDispatchModule,
+    MatMenuModule
   ],
   exports: [
     MatToolbarModule,
@@ -55,7 +57,8 @@ import { ScrollDispatchModule } from '@angular/cdk/scrolling'
     MatSidenavModule,
     MatDividerModule,
     MatListModule,
-    ScrollDispatchModule
+    ScrollDispatchModule,
+    MatMenuModule
   ],
   declarations: []
 })

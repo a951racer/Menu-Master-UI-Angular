@@ -1,0 +1,25 @@
+@import '../../appThemeVariables.scss';
+
+.home-page {
+  text-align: center;
+}
+.new-button {
+  margin: 5px;
+  background-color: $primary;
+  color: $primary-contrast;
+}
+
+.navbar {
+  text-align: center;
+}
+
+.logo {
+  max-width: 500px;
+  max-height: 500px;
+}
+
+.home {
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
