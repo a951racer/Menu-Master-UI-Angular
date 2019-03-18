@@ -1,3 +1,5 @@
+@import '../../../appThemeVariables.scss';
+
 .mealSlot-dialog {
   width: 700px;
   height: auto;
@@ -33,13 +35,14 @@
 }
 
 .recipe-list {
-  //border: solid 1px #ccc;
+  border: solid 1px $primary-light;
   min-height: 300px;
   width: 265px;
   background: white;
   border-radius: 4px;
   overflow: hidden;
   display: block;
+  z-index: 0;
 }
 
 .recipe-box {

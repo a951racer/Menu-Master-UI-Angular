@@ -41,6 +41,7 @@ export class MealSlotDialogComponent implements OnInit {
   }
 
   mealSlotListDrop(event: CdkDragDrop<string[]>) {
+    console.log('drop')
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -53,6 +54,7 @@ export class MealSlotDialogComponent implements OnInit {
   }
 
   masterListDrop(event: CdkDragDrop<string[]>) {
+    console.log('drop master')
     if (event.previousContainer !== event.container) {
       this.editableRecipeList.splice(event.previousIndex, 1);
     }
