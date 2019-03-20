@@ -37,12 +37,13 @@
               </mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
-              <mat-card class="meal-card" (click)="editMeal(meal)" *ngFor="let meal of selectedDay.mealSlots">
+              <mat-card class="meal-card" *ngFor="let meal of selectedDay.mealSlots">
                   <mat-card-header>
-                    <mat-card-title class="meal-card-title">
-                      {{ meal.name}}
-                    </mat-card-title>
-                  </mat-card-header>
+                      <mat-card-title class="mat-card-title meal-card-title">{{ meal.name}}</mat-card-title>
+                      <div fxFlex></div>
+                      <mat-icon (click)="editMeal(meal)" class="edit-meal-button">edit</mat-icon>
+                      <mat-icon (click)="deleteMeal(meal)" class="delete-meal-button">delete</mat-icon>
+                </mat-card-header>
                   <mat-card-content>
                     <mat-list>
                       <mat-list-item class="items" *ngFor="let item of meal.recipes">

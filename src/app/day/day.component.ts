@@ -164,4 +164,31 @@ export class DayComponent implements OnInit {
       }
     });
   }
+
+  deleteMeal(meal) {
+    let selectedIndex = this.dayList.findIndex((d) => d._id === this.selectedDay._id);
+    this.dialogData = {};
+    this.dialogData.dialogTitle = 'Delete Meal'
+    //this.dialogData.dialogMessage = `Delete ${moment(day.date).format('dddd')}, ${moment(day.date).format('L')}?`;
+    this.dialogData.dialogMessage = `Delete ${meal.name}?`
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '300px',
+      height: 'auto',
+      data: this.dialogData
+    });
+
+    dialogRef.afterClosed().subscribe(confirmation => {
+      if (confirmation) {
+        //remove meal from day.mealSlots
+        this.selectedDay.mealSlots = this.selectedDay.mealSlots.filter(slot => slot._id !== meal._id)
+        this._dayService.update(this.selectedDay).subscribe(day => {
+          this.selectedDay = day;
+          const newDayList = [...this.dayList];
+          newDayList[selectedIndex] = day;
+          this.dayList = newDayList;
+          this.showDetails = true;
+        });
+      }
+    });
+  }
 }
