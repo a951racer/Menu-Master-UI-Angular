@@ -57,11 +57,6 @@
 
 .meal-card {
   margin-bottom: 10px;
-  cursor: pointer;
-}
-
-.meal-card-title {
-  color: $primary-dark;
 }
 
 .mat-list-item.mat-list-item-avatar.mat-list-item-with-avatar {
@@ -109,4 +104,22 @@ table {
 
 .mat-headline {
   margin-top: 15px;
+}
+
+.mat-card-header {
+  width: 100%;
+}
+
+.meal-card-title {
+  color: $primary-dark;
+}
+
+.edit-meal-button {
+  color: $accent;
+  cursor: pointer;
+}
+
+.delete-meal-button {
+  color: $warn;
+  cursor: pointer;
 }
