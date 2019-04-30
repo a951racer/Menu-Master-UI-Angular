@@ -10,6 +10,7 @@
           {{ ingredient.name }}
         </mat-card-title>
         <mat-card-subtitle>
+          {{ ingredient.size}}
         </mat-card-subtitle>
       </mat-card-header>
     </mat-card>
@@ -32,6 +33,9 @@
               <mat-card-title>
                 {{ selectedIngredient.name }}
               </mat-card-title>
+              <mat-card-subtitle>
+                {{ selectedIngredient.size}}
+              </mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
               <br>

@@ -19,6 +19,7 @@
 .card {
     margin-bottom: 10px;
     cursor: pointer;
+    padding: 5px;
 }
 
 .details-card-header {
@@ -35,6 +36,10 @@
 
 .title {
     color: black;
+}
+
+.mat-card-subtitle {
+  margin-bottom: 1px;
 }
 
 .mat-button {
@@ -109,3 +114,4 @@ div.sticky {
 .mat-headline {
   margin-top: 15px;
 }
+
