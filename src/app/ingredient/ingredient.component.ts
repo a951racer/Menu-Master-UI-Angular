@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IngredientService } from './ingredient.service';
 import { MatDivider, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import { ingredient } from './ingredient.model';
+import { Ingredient } from './ingredient.model';
 import { IngredientDialogComponent } from './ingredient-dialog/ingredient-dialog.component'
 import { IngredientImportDialogComponent } from './ingredient-import-dialog/ingredient-import-dialog.component'
 import { ConfirmationDialogComponent } from '../helpers/confirmation-dialog/confirmation-dialog.component';
@@ -54,7 +54,7 @@ export class IngredientComponent implements OnInit {
   handleButtonClick(buttonName) {
     switch (buttonName) {
       case 'edit':
-        this.editIngredient(ingredient);
+        this.editIngredient(this.selectedIngredient);
         break;
       case 'close':
         this.selectedIngredient = {};
@@ -67,7 +67,7 @@ export class IngredientComponent implements OnInit {
   }
 
   newIngredient() {
-    let newingredient = new ingredient();
+    let newingredient = new Ingredient(null);
     this.dialogData = newingredient;
     this.dialogData.dialogTitle = 'New ingredient';
     const dialogRef = this.dialog.open(IngredientDialogComponent, {
@@ -87,7 +87,8 @@ export class IngredientComponent implements OnInit {
   }
 
   editIngredient(ingredient) {
-    this.dialogData = this.selectedIngredient;
+    let index = this.ingredientList.findIndex((i) => i._id === ingredient._id);
+    this.dialogData = new Ingredient(ingredient);
     this.dialogData.dialogTitle = 'Edit Ingredient';
     const dialogRef = this.dialog.open(IngredientDialogComponent, {
       width: '400px',
@@ -97,11 +98,10 @@ export class IngredientComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        result.id = this.selectedIngredient.id;
-        console.log(result);
+        result._id = ingredient._id;
         this._ingredientService.update(result).subscribe(ingredient => {
           this.selectedIngredient = ingredient;
-          //this.ingredientList[index] = ingredient;
+          this.ingredientList[index] = ingredient;
           this.showDetails = true;
         });
       }

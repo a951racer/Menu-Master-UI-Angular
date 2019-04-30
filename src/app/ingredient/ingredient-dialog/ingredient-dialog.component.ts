@@ -22,6 +22,7 @@ export class IngredientDialogComponent implements OnInit {
   }
 
   save() {
+    console.log(this.ingredientForm.value)
     this.dialogRef.close(this.ingredientForm.value);
   }
 
