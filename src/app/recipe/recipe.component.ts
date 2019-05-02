@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { RecipeService } from './recipe.service';
 import { MatTable, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { recipe } from './recipe.model';
+import { Ingredient } from '../ingredient/ingredient.model'
 import { RecipeDialogComponent } from './recipe-dialog/recipe-dialog.component'
+import { QuantityDialogComponent } from './quantity-dialog/quantity-dialog.component'
 import { ConfirmationDialogComponent } from '../helpers/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
@@ -132,4 +134,31 @@ export class RecipeComponent implements OnInit {
       }
     });
   }
+
+  editQuantity(ingredient) {
+    let ingredientIndex = this.selectedRecipe.ingredients.findIndex((i) => i._id === ingredient._id);
+    let selectedIndex = this.recipeList.findIndex((r) => r._id === this.selectedRecipe._id);
+    this.dialogData = new Ingredient(ingredient);
+    this.dialogData.dialogTitle = 'Edit Quantity';
+    const dialogRef = this.dialog.open(QuantityDialogComponent, {
+      width: '350px',
+      height: 'auto',
+      data: this.dialogData
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.selectedRecipe.ingredients[ingredientIndex].quantity = result.quantity
+        this._recipeService.update(this.selectedRecipe).subscribe(recipe => {
+          this.selectedRecipe = recipe;
+          const newRecipeList = [...this.recipeList];
+          newRecipeList[selectedIndex] = recipe;
+          this.recipeList = newRecipeList;
+          //this.recipeList[index] = recipe;
+          this.showDetails = true;
+        });
+      }
+    });
+  }
+
 }

@@ -1,0 +1,12 @@
+<mat-dialog-content [formGroup]="quantityForm">
+  <div class="mat-title" mat-dialog-title>{{data.dialogTitle}}</div>
+    <mat-form-field class="form-input">
+      <input matInput
+      placeholder="Quantity"
+      formControlName="quantity">
+    </mat-form-field>
+</mat-dialog-content>
+<div mat-dialog-actions>
+    <button mat-button (click)="save()" cdkFocusInitial>Save</button>
+    <button mat-button (click)="onCancelClick()">Cancel</button>
+</div>
