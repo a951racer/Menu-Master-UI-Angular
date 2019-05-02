@@ -39,6 +39,10 @@
             <mat-list>
               <mat-list-item class="item" *ngFor="let ingredient of selectedRecipe.ingredients">
                 <mat-icon matListIcon>keyboard_arrow_right</mat-icon>{{ ingredient.name }}
+                <!--<span *ngIf="ingredient.size" class="size">&nbsp;[{{ ingredient.size }}]</span>-->
+                <span *ngIf="ingredient.quantity" class="quantity" (click)="editQuantity(ingredient)">&nbsp;- {{ ingredient.quantity }}</span>
+                <span *ngIf="!ingredient.quantity" class="quantity" (click)="editQuantity(ingredient)">&nbsp;<mat-icon>edit</mat-icon></span>
+
               </mat-list-item>
             </mat-list>
               <mat-card-actions>
