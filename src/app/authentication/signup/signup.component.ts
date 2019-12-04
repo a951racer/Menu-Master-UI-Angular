@@ -1,31 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthenticationService } from '../authentication.service';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
+
 export class SignupComponent implements OnInit {
-  user: any;
-  errorMessage: string;
+  credentialsForm: FormGroup;
+  labelPosition = 'before';
 
-  constructor(private _authenticationService: AuthenticationService,
-    private _router: Router) { }
-
+  constructor(private fb: FormBuilder,
+              public dialogRef: MatDialogRef<SignupComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any) {
+                this.credentialsForm = fb.group(data);
+  }
 
   ngOnInit() {
   }
 
   signup() {
-    this._authenticationService.signup(this.user).subscribe(
-      result  => {
-        localStorage.setItem('currentUser', JSON.stringify(result));
-        this._router.navigate(['/']),
-      error =>
-        this.errorMessage = error
-    });
+    this.dialogRef.close(this.credentialsForm.value);
+  }
 
+  cancel() {
+    this.dialogRef.close();
   }
 }

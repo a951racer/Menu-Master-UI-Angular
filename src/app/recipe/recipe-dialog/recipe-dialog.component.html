@@ -19,44 +19,14 @@
   </mat-form-field>
 
   <div *ngIf="isDataAvailable">
-    <div fxLayout="row" fxLayoutAlign="space-between start">
-        <div fxFlex="0 1 50%" class="left-col">
-          <div class="mat-title">Ingredients for {{ data.name }}</div>
+    <p-pickList [source]="masterIngredientList" [target]="editableIngredientList" sourceHeader="Available" targetHeader="In Recipe" [responsive]="true" filterBy="name" 
+    dragdrop="true" sourceFilterPlaceholder="Search by name" targetFilterPlaceholder="Search by name" [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}">
+      <ng-template let-ingredient pTemplate="item">
+        <div class="ui-helper-clearfix">
+          <div style="font-size:10px;float:right;margin:15px 5px 0 0">{{ingredient.name}}</div>
         </div>
-        <div fxFlex="0 1 50%" class="right-col">
-          <div class="mat-title">Ingredients Available</div>
-        </div>
-    </div>
-  </div>
-</div>
-
-  <div *ngIf="isDataAvailable" class="drag">
-    <div fxLayout="row" fxLayoutAlign="space-between start">
-      <div fxFlex="0 1 50%" class="left-col ingredient-container sticky">
-        <div
-          cdkDropList
-          id="recipeIngredientList"
-          #recipeIngredientList="cdkDropList"
-          [cdkDropListData]="editableIngredientList"
-          [cdkDropListConnectedTo]="[ingredientList]"
-          class="ingredient-list"
-          (cdkDropListDropped)="recipeListDrop($event)">
-            <mat-card class="ingredient-box" *ngFor="let item of editableIngredientList" cdkDrag>{{item.name}}</mat-card>
-        </div>
-      </div>
-
-      <div fxFlex="0 1 50%" class="right-col ingredient-container">
-        <div
-          cdkDropList
-          id="masterIngredientList"
-          #ingredientList="cdkDropList"
-          [cdkDropListData]="masterIngredientList"
-          [cdkDropListConnectedTo]="[recipeIngredientList]"
-          class="ingredient-list"
-          (cdkDropListDropped)="masterListDrop($event)">
-            <mat-card class="ingredient-box" *ngFor="let item of masterIngredientList" cdkDrag>{{item.name}}</mat-card>
-        </div>
-    </div>
+      </ng-template>
+    </p-pickList>
   </div>
 </div>
 </mat-dialog-content>

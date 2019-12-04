@@ -10,6 +10,7 @@ import { RecipeDialogComponent } from './recipe-dialog/recipe-dialog.component';
 import { QuantityDialogComponent } from './quantity-dialog/quantity-dialog.component'
 import { HelpersModule } from '../helpers/helpers.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { PickListModule } from 'primeng/picklist';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     HelpersModule,
     FormsModule,
     ReactiveFormsModule,
+    PickListModule,
     RouterModule.forChild(RecipeRoutes),
   ],
   declarations: [

@@ -1,27 +1,35 @@
-<form (ngSubmit)="signup()">
-  <table class="form">
-    <tr>
-      <td><label class="form-label">First Name:</label></td>
-      <td><input type="text" [(ngModel)]="user.firstName" name="firstName" class="input-text"/></td>
-    </tr>
-    <tr>
-      <td><label class="form-label">Last Name:</label></td>
-      <td><input type="text" [(ngModel)]="user.lastName" name="lastName" class="input-text"/></td>
-    </tr>
-    <tr>
-      <td><label class="form-label">Email:</label></td>
-      <td><input type="text" [(ngModel)]="user.email" name="email" class="input-text"/></td>
-    </tr>
-    <tr>
-      <td><label class="form-label">Username:</label></td>
-      <td><input type="text" [(ngModel)]="user.username" name="username" class="input-text"/></td>
-    </tr>
-    <tr>
-      <td><label class="form-label">Password:</label></td>
-      <td><input type="password" [(ngModel)]="user.password" name="password" class="input-password"/></td>
-    </tr>
-    <tr>
-      <td colspan="2"><input type="submit" value="Sign up" class="submit"/></td>
-    </tr>
-  </table>
-</form>
+<h1 mat-dialog-title>{{data.dialogTitle}}</h1>
+      <mat-dialog-content [formGroup]="credentialsForm">
+        <div class="form-container">
+          <mat-form-field>
+            <input matInput
+              placeholder="First Name"
+              formControlName="firstName">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput
+              placeholder="Last Name"
+              formControlName="lastName">
+          </mat-form-field>
+            <mat-form-field>
+          <input matInput
+            placeholder="Email"
+            formControlName="email">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput
+            placeholder="Username"
+            formControlName="username">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput
+            type="password"
+            placeholder="Password"
+            formControlName="password">
+        </mat-form-field>
+        </div>
+      </mat-dialog-content>
+<div mat-dialog-actions>
+    <button mat-button (click)="signup()" cdkFocusInitial>Sign Up</button>
+    <button mat-button (click)="cancel()">Cancel</button>
+</div>
