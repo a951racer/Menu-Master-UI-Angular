@@ -20,7 +20,7 @@
 
   <div *ngIf="isDataAvailable">
     <p-pickList [source]="masterIngredientList" [target]="editableIngredientList" sourceHeader="Available" targetHeader="In Recipe" [responsive]="true" filterBy="name" 
-    dragdrop="true" sourceFilterPlaceholder="Search by name" targetFilterPlaceholder="Search by name" [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}">
+    dragdrop="true" sourceFilterPlaceholder="Search by name" targetFilterPlaceholder="Search by name" [sourceStyle]="{'height':'200px'}" [targetStyle]="{'height':'200px'}">
       <ng-template let-ingredient pTemplate="item">
         <div class="ui-helper-clearfix">
           <div style="font-size:10px;float:right;margin:15px 5px 0 0">{{ingredient.name}}</div>
