@@ -71,11 +71,11 @@ export class RecipeComponent implements OnInit {
     this.dialogData.dialogTitle = 'New Recipe';
     const dialogRef = this.dialog.open(RecipeDialogComponent, {
       width: '800px',
-      height: '600px',
+      height: '800px',
       data: this.dialogData
     });
 
-    dialogRef.afterClosed().subscribe(newRecipe => {  
+    dialogRef.afterClosed().subscribe(newRecipe => {
       if (newRecipe) {
         this._recipeService.insert(newRecipe).subscribe(recipe => {
           this.selectedRecipe = recipe;
@@ -95,7 +95,7 @@ export class RecipeComponent implements OnInit {
     this.dialogData.dialogTitle = 'Edit Recipe';
     const dialogRef = this.dialog.open(RecipeDialogComponent, {
       width: '800px',
-      height: '600px',
+      height: '800px',
       data: this.dialogData
     });
 
