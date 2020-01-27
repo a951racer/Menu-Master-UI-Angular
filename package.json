@@ -7,7 +7,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "heroku-postbuild": "ng build --aot --c=production",
+    "heroku-postbuild": "ng build --aot --c=staging",
     "build": "ng build --aot"
   },
   "private": true,
