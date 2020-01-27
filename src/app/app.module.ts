@@ -8,10 +8,7 @@ import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule} from "@angular/forms";
 
-import {DataViewModule} from 'primeng/dataview';
-import {ButtonModule} from 'primeng/button';
-import {PickListModule} from 'primeng/picklist';
-import {AccordionModule} from 'primeng/accordion';
+//import { customHttpProvider } from '../assets/custom-http';
 
 import { AuthenticationModule } from '../app/authentication/authentication.module';
 import { AuthenticationService } from './authentication/authentication.service';
@@ -47,10 +44,6 @@ import { RecipeModule } from './recipe/recipe.module';
     DayModule,
     MealModule,
     RecipeModule,
-    DataViewModule,
-    ButtonModule,
-    PickListModule,
-    AccordionModule,
     RouterModule.forRoot(AppRoutes),
   ],
   exports: [

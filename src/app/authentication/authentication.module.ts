@@ -17,7 +17,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     ],
   declarations: [
     AuthenticationComponent,
-    //SignupComponent,
+    SignupComponent,
     SignoutComponent
   ],
   providers: [

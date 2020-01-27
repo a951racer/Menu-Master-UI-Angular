@@ -70,8 +70,8 @@ export class RecipeComponent implements OnInit {
     this.dialogData = newrecipe;
     this.dialogData.dialogTitle = 'New Recipe';
     const dialogRef = this.dialog.open(RecipeDialogComponent, {
-      width: '800px',
-      height: '800px',
+      width: '700px',
+      height: 'auto',
       data: this.dialogData
     });
 
@@ -94,8 +94,8 @@ export class RecipeComponent implements OnInit {
     this.dialogData = this.selectedRecipe;
     this.dialogData.dialogTitle = 'Edit Recipe';
     const dialogRef = this.dialog.open(RecipeDialogComponent, {
-      width: '800px',
-      height: '800px',
+      width: '700px',
+      height: 'auto',
       data: this.dialogData
     });
 
