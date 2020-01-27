@@ -1,18 +1,48 @@
-  <mat-dialog-content [formGroup]="mealSlotForm">
+<mat-dialog-content [formGroup]="mealSlotForm">
   <div class="sticky-header">
     <div class="mat-title" mat-dialog-title>{{data.dialogTitle}}</div>
     <br>
 
-    <div *ngIf="isDataAvailable">
-      <p-pickList [source]="masterRecipeList" [target]="editableRecipeList" sourceHeader="Available Recipes" targetHeader="Included" [responsive]="true" filterBy="name" 
-      dragdrop="true" sourceFilterPlaceholder="Search by name" targetFilterPlaceholder="Search by name" [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}">
-        <ng-template let-recipe pTemplate="item">
-          <div class="ui-helper-clearfix">
-            <div style="font-size:10px;float:right;margin:15px 5px 0 0">{{recipe.name}}</div>
-          </div>
-        </ng-template>
-      </p-pickList>
+  <div *ngIf="isDataAvailable">
+    <div fxLayout="row" fxLayoutAlign="space-between start">
+        <div fxFlex="0 1 50%" class="left-col">
+          <div class="mat-title">Recipes for {{ data.name }}</div>
+        </div>
+        <div fxFlex="0 1 50%" class="right-col">
+          <div class="mat-title">Recipes Available</div>
+        </div>
     </div>
+  </div>
+</div>
+
+  <div *ngIf="isDataAvailable" class="drag">
+    <div fxLayout="row" fxLayoutAlign="space-between start">
+      <div fxFlex="0 1 50%" class="left-col recipe-container sticky">
+        <div
+          cdkDropList
+          id="mealSlotRecipeList"
+          #mealSlotRecipeList="cdkDropList"
+          [cdkDropListData]="editableRecipeList"
+          [cdkDropListConnectedTo]="[recipeList]"
+          class="recipe-list"
+          (cdkDropListDropped)="mealSlotListDrop($event)">
+            <mat-card class="recipe-box" *ngFor="let item of editableRecipeList" cdkDrag>{{item.name}}</mat-card>
+        </div>
+      </div>
+
+      <div fxFlex="0 1 50%" class="right-col recipe-container">
+        <div
+          cdkDropList
+          id="masterRecipeList"
+          #recipeList="cdkDropList"
+          [cdkDropListData]="masterRecipeList"
+          [cdkDropListConnectedTo]="[mealSlotRecipeList]"
+          class="recipe-list"
+          (cdkDropListDropped)="masterListDrop($event)">
+            <mat-card class="recipe-box" *ngFor="let item of masterRecipeList" cdkDrag>{{item.name}}</mat-card>
+        </div>
+    </div>
+  </div>
 </div>
 </mat-dialog-content>
 <div mat-dialog-actions>

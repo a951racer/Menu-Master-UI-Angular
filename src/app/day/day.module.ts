@@ -4,7 +4,6 @@ import { RouterModule, Router } from '@angular/router';
 import { MaterialModule } from '../helpers/material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { PickListModule } from 'primeng/picklist';
 
 import { DayComponent } from './day.component';
 import { DayRoutes } from './day.routes';
@@ -25,7 +24,6 @@ import { MealSlotService } from '../mealSlot/mealSlot.service';
     HelpersModule,
     FormsModule,
     ReactiveFormsModule,
-    PickListModule,
     RouterModule.forChild(DayRoutes),
   ],
   declarations: [

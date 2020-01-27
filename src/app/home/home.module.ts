@@ -5,7 +5,6 @@ import { MaterialModule } from '../helpers/material/material.module';
 import { HomeComponent } from './home.component';
 import { HomeRoutes } from './home.routes';
 import { SigninComponent } from '../authentication/signin/signin.component';
-import { SignupComponent } from '../authentication/signup/signup.component';
 import { AuthenticationService } from '../authentication/authentication.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
@@ -19,12 +18,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
   ],
   declarations: [
     HomeComponent,
-    SigninComponent,
-    SignupComponent
+    SigninComponent
   ],
   entryComponents: [
-    SigninComponent,
-    SignupComponent
+    SigninComponent
   ],
   providers: [
     AuthenticationService
