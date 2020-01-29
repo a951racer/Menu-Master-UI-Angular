@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://menu-master-api-staging.minnykid.com'
+  apiUrl: 'http://menu-master-api-staging.herokuapp.com'
 };
