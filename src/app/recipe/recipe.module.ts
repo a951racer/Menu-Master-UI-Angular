@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { MaterialModule } from '../helpers/material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { DataViewModule } from 'primeng/dataview';
+import { CardModule } from 'primeng/card';
 
 import { RecipeComponent } from './recipe.component';
 import { RecipeRoutes } from './recipe.routes';
@@ -16,6 +18,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     CommonModule,
     MaterialModule,
     FlexLayoutModule,
+    DataViewModule,
+    CardModule,
     HelpersModule,
     FormsModule,
     ReactiveFormsModule,

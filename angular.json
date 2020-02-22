@@ -47,7 +47,10 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/appTheme.scss"
+              "src/appTheme.scss",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/nova-light/theme.css",
+              "node_modules/primeng/resources/primeng.min.css"
             ],
             "scripts": []
           },

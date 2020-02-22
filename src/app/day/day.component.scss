@@ -1,5 +1,19 @@
 @import '../../appThemeVariables.scss';
 
+.selected {
+  font-weight: bold;
+  color: red;
+  text-align: center;
+}
+
+body > .ui-card {
+  margin: 3px;
+}
+
+.meal-name {
+  font-weight: bold;
+  font-size: 21px;
+}
 .day-page {
     padding-top: 80px;
 }
