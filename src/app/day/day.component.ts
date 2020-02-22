@@ -27,7 +27,7 @@ export class DayComponent implements OnInit {
   showEdit = false;
   dialogData: any;
 
-  @ViewChild('mealTable') mealTable: MatTable<any>;
+  @ViewChild('mealTable', { static: false }) mealTable: MatTable<any>;
 
   constructor(private _dayService: DayService,
               private _mealSlotService: MealSlotService,
