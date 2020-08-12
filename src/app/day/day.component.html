@@ -3,61 +3,66 @@
 <div fxLayout="row" fxLayoutAlign="space-between start " class="dayPage">
   <!-- List -->
   <div fxFlex="0 1 50%" class="left-col">
-    <p-dataView #dv [value]="dayList">
-      <p-header>Days</p-header>
-      <ng-template let-day pTemplate="listItem">
-        <div class="ui-g-12">
-            <div>
-              <p-card header="{{day.date | date:'EEEE'}}" subheader="{{day.date | date:'shortDate'}}" (click)="onCardClick(day._id)">
-                <p-header *ngIf="selectedDay._id === day._id">
-                  <div class="selected">SELECTED</div>
-                </p-header>
-              </p-card>
-            </div>
-        </div>
-      </ng-template>
-    </p-dataView>
+    <mat-card class="card" [class.mat-elevation-z8]="selectedDay._id === day._id" (click)="onCardClick(day._id)" *ngFor="let day of dayList">
+      <mat-card-header>
+        <mat-card-title class="title">
+          {{ day.date |  date:'EEEE'}}
+        </mat-card-title>
+        <mat-card-subtitle>
+            {{ day.date |  date:'shortDate'}}
+        </mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+    <br>
   </div>
 
 
   <!-- Details Area -->
   <div fxFlex="0 1 50%" class="right-col sticky">
-    <div *ngIf="!showDetails">
-      <p-card header="Click a day to see details"></p-card>
-    </div>
+      <div *ngIf="!showDetails">
+        <mat-card>
+          Click a day to see details
+        </mat-card>
+      </div>
 
-    <div id="details" *ngIf="showDetails">
-      <div>
-        <p-card header="{{selectedDay.date | date:'EEEE'}}" subheader="{{selectedDay.date | date:'shortDate'}}" styleClass="">
-          <p-dataView #dvmeal [value]="selectedDay.mealSlots">
-            <p-header>Meals</p-header>
-            <ng-template let-meal pTemplate="listItem">
-              <div class="ui-g-12">
-                <div>
-                  <p-card>
-                    <p-header>
-                      <span class="meal-name">{{meal.name}}</span>
+      <div id="details" *ngIf="showDetails">
+        <div>
+          <mat-card class="details-card mat-elevation-z8">
+            <mat-card-header class="details-card-header">
+              <mat-card-title>
+                  {{ selectedDay.date |  date:'EEEE'}}
+              </mat-card-title>
+              <mat-card-subtitle>
+                  {{ selectedDay.date |  date:'shortDate'}}
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <mat-card class="meal-card" *ngFor="let meal of selectedDay.mealSlots">
+                  <mat-card-header>
+                      <mat-card-title class="mat-card-title meal-card-title">{{ meal.name}}</mat-card-title>
                       <div fxFlex></div>
                       <mat-icon (click)="editMeal(meal)" class="edit-meal-button">edit</mat-icon>
                       <mat-icon (click)="deleteMeal(meal)" class="delete-meal-button">delete</mat-icon>
-                    </p-header>
+                </mat-card-header>
+                  <mat-card-content>
                     <mat-list>
                       <mat-list-item class="items" *ngFor="let item of meal.recipes">
                         <mat-icon matListIcon>keyboard_arrow_right</mat-icon> {{ item.name }}
                       </mat-list-item>
                     </mat-list>
-                    <p-footer>
-                      <button mat-button (click)="handleButtonClick('close')">CLOSE</button>
-                      <button mat-button (click)="handleButtonClick('edit')">EDIT</button>
-                      <button mat-button (click)="handleButtonClick('delete')">DELETE</button>
-                    </p-footer>
-                  </p-card>
-                </div>
-              </div>
-            </ng-template>
-          </p-dataView>
-        </p-card>
+                  </mat-card-content>
+              </mat-card>
+
+
+            </mat-card-content>
+              <mat-card-actions>
+                <mat-divider [inset]="true"></mat-divider>
+                <button mat-button (click)="handleButtonClick('close')">CLOSE</button>
+                <button mat-button (click)="handleButtonClick('edit')">EDIT</button>
+                <button mat-button (click)="handleButtonClick('delete')">DELETE</button>
+              </mat-card-actions>
+          </mat-card>
+        </div>
       </div>
-    </div>
   </div>
 </div>

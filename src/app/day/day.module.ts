@@ -4,8 +4,6 @@ import { RouterModule, Router } from '@angular/router';
 import { MaterialModule } from '../helpers/material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { DataViewModule } from 'primeng/dataview';
-import { CardModule } from 'primeng/card';
 
 import { DayComponent } from './day.component';
 import { DayRoutes } from './day.routes';
@@ -23,8 +21,6 @@ import { MealSlotService } from '../mealSlot/mealSlot.service';
     CommonModule,
     MaterialModule,
     FlexLayoutModule,
-    DataViewModule,
-    CardModule,
     HelpersModule,
     FormsModule,
     ReactiveFormsModule,

@@ -3,61 +3,58 @@
 <div fxLayout="row" fxLayoutAlign="space-between start " class="recipePage">
   <!-- List -->
   <div fxFlex="0 1 50%" class="left-col">
-    <p-dataView #dv [value]="recipeList" filterBy="name">
-      <p-header>
-        <div class="ui-helper-clearfix">
-            <div class="ui-g">
-                <div class="ui-g-6 ui-md-4 filter-container">
-                    <div style="position:relative">
-                        <input type="search" pInputText placeholder="Filter by name" (input)="dv.filter($event.target.value)">
-                    </div>
-                </div>
-            </div>
-        </div>
-      </p-header>
-      <ng-template let-recipe pTemplate="listItem">
-        <div class="ui-g-12">
-            <div>
-              <p-card header={{recipe.name}} subheader={{recipe.description}} (click)="onCardClick(recipe._id)">
-                <p-header *ngIf="selectedRecipe._id === recipe._id">
-                  <div class="selected">SELECTED</div>
-                </p-header>
-              </p-card>            
-            </div>
-        </div>
-      </ng-template>
-    </p-dataView>
+    <mat-card class="card" [class.mat-elevation-z8]="selectedRecipe._id === recipe._id" (click)="onCardClick(recipe._id)" *ngFor="let recipe of recipeList">
+      <mat-card-header>
+        <mat-card-title class="title">
+          {{ recipe.name }}
+        </mat-card-title>
+        <mat-card-subtitle>
+          {{ recipe.description }}
+        </mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+    <br>
   </div>
 
 
   <!-- Details Area -->
   <div fxFlex="0 1 50%" class="right-col sticky">
-    <div *ngIf="!showDetails">
-      <p-card header="Click a recipe to see details"></p-card>
-    </div>
+      <div *ngIf="!showDetails">
+        <mat-card>
+          Click a dish to see details
+        </mat-card>
+      </div>
 
-    <div id="details" *ngIf="showDetails">
-      <div>
-        <p-card header={{selectedRecipe.name}} subheader={{selectedRecipe.description}} styleClass="">
-          <mat-list>
-            <mat-list-item class="item" *ngFor="let ingredient of selectedRecipe.ingredients">
-              <mat-icon matListIcon>keyboard_arrow_right</mat-icon>{{ ingredient.name }}
-              <!--<span *ngIf="ingredient.size" class="size">&nbsp;[{{ ingredient.size }}]</span>-->
-              <span *ngIf="ingredient.quantity" class="quantity" (click)="editQuantity(ingredient)">&nbsp;- {{ ingredient.quantity }}</span>
-              <span *ngIf="!ingredient.quantity" class="quantity" (click)="editQuantity(ingredient)">&nbsp;<mat-icon>edit</mat-icon></span>
-            </mat-list-item>
-          </mat-list>
-          <p-footer>
-            <button mat-button (click)="handleButtonClick('close')">CLOSE</button>
-            <button mat-button (click)="handleButtonClick('edit')">EDIT</button>
-            <button mat-button (click)="handleButtonClick('delete')">DELETE</button>
-          </p-footer>
-        </p-card>
+      <div id="details" *ngIf="showDetails">
+        <div>
+          <mat-card class="details-card mat-elevation-z8">
+            <mat-card-header class="details-card-header">
+              <mat-card-title>
+                {{ selectedRecipe.name }}
+              </mat-card-title>
+              <mat-card-subtitle>
+                  {{ selectedRecipe.description}}
+                </mat-card-subtitle>
+                </mat-card-header>
+            <mat-list>
+              <mat-list-item class="item" *ngFor="let ingredient of selectedRecipe.ingredients">
+                <mat-icon matListIcon>keyboard_arrow_right</mat-icon>{{ ingredient.name }}
+                <!--<span *ngIf="ingredient.size" class="size">&nbsp;[{{ ingredient.size }}]</span>-->
+                <span *ngIf="ingredient.quantity" class="quantity" (click)="editQuantity(ingredient)">&nbsp;- {{ ingredient.quantity }}</span>
+                <span *ngIf="!ingredient.quantity" class="quantity" (click)="editQuantity(ingredient)">&nbsp;<mat-icon>edit</mat-icon></span>
+
+              </mat-list-item>
+            </mat-list>
+              <mat-card-actions>
+                <button mat-button (click)="handleButtonClick('close')">CLOSE</button>
+                <button mat-button (click)="handleButtonClick('edit')">EDIT</button>
+                <button mat-button (click)="handleButtonClick('delete')">DELETE</button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        </div>
+
+        <div id="edit" *ngIf="showEdit">
       </div>
     </div>
-    </div>
 </div>
-
-
-
-
