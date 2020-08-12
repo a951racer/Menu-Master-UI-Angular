@@ -7,5 +7,5 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Scotchy';
+  title = "Grocery Get'r";
 }
