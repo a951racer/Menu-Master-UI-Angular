@@ -1,5 +1,15 @@
 @import '../../appThemeVariables.scss';
 
+.section-title {
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.label {
+  font-weight: bold;
+  margin-left: 6px;
+}
+
 .recipe-page {
     padding-top: 80px;
 }

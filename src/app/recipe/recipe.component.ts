@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipeService } from './recipe.service';
 import { MatTable, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import { recipe } from './recipe.model';
+import { recipe as Recipe } from './recipe.model';
 import { Ingredient } from '../ingredient/ingredient.model'
 import { RecipeDialogComponent } from './recipe-dialog/recipe-dialog.component'
 import { QuantityDialogComponent } from './quantity-dialog/quantity-dialog.component'
@@ -50,7 +50,7 @@ export class RecipeComponent implements OnInit {
     this.showDetails = false;
   }
 
-  handleButtonClick(buttonName) {
+  handleButtonClick(buttonName, recipe) {
     switch (buttonName) {
       case 'edit':
         this.editRecipe(recipe);
@@ -66,7 +66,7 @@ export class RecipeComponent implements OnInit {
   }
 
   newRecipe() {
-    let newrecipe = new recipe();
+    let newrecipe = new Recipe({});
     this.dialogData = newrecipe;
     this.dialogData.dialogTitle = 'New Recipe';
     const dialogRef = this.dialog.open(RecipeDialogComponent, {
@@ -91,7 +91,7 @@ export class RecipeComponent implements OnInit {
 
   editRecipe(recipe) {
     let selectedIndex = this.recipeList.findIndex((r) => r._id === recipe._id);
-    this.dialogData = this.selectedRecipe;
+    this.dialogData = new Recipe(this.selectedRecipe);
     this.dialogData.dialogTitle = 'Edit Recipe';
     const dialogRef = this.dialog.open(RecipeDialogComponent, {
       width: '700px',
@@ -101,11 +101,11 @@ export class RecipeComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        result.id = this.selectedRecipe.id;
-        this._recipeService.update(result).subscribe(recipe => {
-          this.selectedRecipe = recipe;
+        result._id = this.selectedRecipe._id;
+        this._recipeService.update(result).subscribe(updatedRecipe => {
+          this.selectedRecipe = updatedRecipe;
           const newRecipeList = [...this.recipeList];
-          newRecipeList[selectedIndex] = recipe;
+          newRecipeList[selectedIndex] = updatedRecipe;
           this.recipeList = newRecipeList;
 
           //this.recipeList[index] = recipe;
