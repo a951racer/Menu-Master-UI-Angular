@@ -9,14 +9,35 @@
     <br>
     <mat-form-field class="form-input">
       <textarea matInput
-      cdkTextareaAutosize
-      #autosize="cdkTextareaAutosize"
-      cdkAutosizeMinRows="1"
-      cdkAutosizeMaxRows="5"
-      placeholder="Decription"
-      formControlName="description">
-    </textarea>
-  </mat-form-field>
+        cdkTextareaAutosize
+        autosize="cdkTextareaAutosize"
+        cdkAutosizeMinRows="1"
+        cdkAutosizeMaxRows="5"
+        placeholder="Decription"
+        formControlName="description">
+      </textarea>
+    </mat-form-field>
+    <mat-form-field class="form-input">
+      <input matInput
+      placeholder="Cook Temp"
+      formControlName="cookTemp">
+    </mat-form-field>
+    <mat-form-field class="form-input">
+      <input matInput
+      placeholder="Cook Time"
+      formControlName="cookTime">
+    </mat-form-field>
+    <mat-form-field class="form-input">
+      <textarea matInput
+        cdkTextareaAutosize
+        autosize="cdkTextareaAutosize"
+        cdkAutosizeMinRows="5"
+        cdkAutosizeMaxRows="15"
+        placeholder="Instructions"
+        formControlName="instructions">
+      </textarea>
+    </mat-form-field>
+    
 
   <div *ngIf="isDataAvailable">
     <div fxLayout="row" fxLayoutAlign="space-between start">

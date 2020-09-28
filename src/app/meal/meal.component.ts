@@ -97,7 +97,6 @@ export class MealComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         result.id = this.selectedMeal.id;
-        console.log(result);
         this._mealService.update(result).subscribe(meal => {
           this.selectedMeal = meal;
           this.showDetails = true;

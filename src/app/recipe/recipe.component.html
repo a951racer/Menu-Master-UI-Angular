@@ -33,9 +33,9 @@
                 {{ selectedRecipe.name }}
               </mat-card-title>
               <mat-card-subtitle>
-                  {{ selectedRecipe.description}}
-                </mat-card-subtitle>
-                </mat-card-header>
+                {{ selectedRecipe.description}}
+              </mat-card-subtitle>
+            </mat-card-header>
             <mat-list>
               <mat-list-item class="item" *ngFor="let ingredient of selectedRecipe.ingredients">
                 <mat-icon matListIcon>keyboard_arrow_right</mat-icon>{{ ingredient.name }}
@@ -45,14 +45,32 @@
 
               </mat-list-item>
             </mat-list>
-              <mat-card-actions>
-                <button mat-button (click)="handleButtonClick('close')">CLOSE</button>
-                <button mat-button (click)="handleButtonClick('edit')">EDIT</button>
-                <button mat-button (click)="handleButtonClick('delete')">DELETE</button>
-              </mat-card-actions>
-            </mat-card>
-          </div>
+            <div class="section-title">Instructions:</div>
+            <div>
+              <span class="label">
+                Cook Temp:
+              </span>
+              <span>
+                {{ selectedRecipe.cookTemp }}
+              </span>
+            </div>
+            <div>
+              <span class="label">
+                Cook Time:
+              </span>
+              <span>
+                {{ selectedRecipe.cookTime }}
+              </span>
+            </div>
+            <div [innerHTML]="selectedRecipe.instructions"></div>
+            <mat-card-actions>
+              <button mat-button (click)="handleButtonClick('close')">CLOSE</button>
+              <button mat-button (click)="handleButtonClick('edit', selectedRecipe)">EDIT</button>
+              <button mat-button (click)="handleButtonClick('delete')">DELETE</button>
+            </mat-card-actions>
+          </mat-card>
         </div>
+      </div>
 
         <div id="edit" *ngIf="showEdit">
       </div>
